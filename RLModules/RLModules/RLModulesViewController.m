@@ -102,7 +102,12 @@
 
 -(void)moduleContentInvalidated:(NSNotification*)notification
 {
+    NSUInteger index = [_visibleModules indexOfObject:notification.object];
     
+    if (index != NSNotFound)
+    {
+        [_collectionView reloadSections:[NSIndexSet indexSetWithIndex:index]];
+    }
 }
 
 #pragma mark - Cell Classes
