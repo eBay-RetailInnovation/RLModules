@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+appledoc --project-name RLModules \
+         --project-company eBay \
+         --company-id com.ebay \
+         --create-html \
+         --no-create-docset \
+         --keep-undocumented-objects \
+         --keep-undocumented-members \
+         --no-repeat-first-par \
+         ../RLModules/RLModules/*.h
