@@ -54,4 +54,14 @@
  */
 @property (nonatomic) CGFloat minimumBottomPadding;
 
+#pragma mark - Layout Implementation
+/** @name Layout Implementation */
+
+/**
+ Invalidates the current layout.
+ 
+ Subclasses should pass this message to `self` after a property that layout depends on changes.
+ */
+-(void)invalidateLayout;
+
 @end
