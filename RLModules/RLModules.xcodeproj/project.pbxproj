@@ -16,6 +16,7 @@
 		414A805B1901781F0099CD23 /* libRLModules.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 414A80431901781F0099CD23 /* libRLModules.a */; };
 		414A80611901781F0099CD23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 414A805F1901781F0099CD23 /* InfoPlist.strings */; };
 		414A80631901781F0099CD23 /* RLModulesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80621901781F0099CD23 /* RLModulesTests.m */; };
+		414A806F190178540099CD23 /* RLModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A806E190178540099CD23 /* RLModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		414A805E1901781F0099CD23 /* RLModulesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RLModulesTests-Info.plist"; sourceTree = "<group>"; };
 		414A80601901781F0099CD23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		414A80621901781F0099CD23 /* RLModulesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RLModulesTests.m; sourceTree = "<group>"; };
+		414A806D190178540099CD23 /* RLModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLModule.h; sourceTree = "<group>"; };
+		414A806E190178540099CD23 /* RLModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,7 @@
 			children = (
 				414A804B1901781F0099CD23 /* RLModules.h */,
 				414A804D1901781F0099CD23 /* RLModules.m */,
+				414A806C190178420099CD23 /* Modules */,
 				414A80491901781F0099CD23 /* Supporting Files */,
 			);
 			path = RLModules;
@@ -141,6 +145,15 @@
 				414A805F1901781F0099CD23 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		414A806C190178420099CD23 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				414A806D190178540099CD23 /* RLModule.h */,
+				414A806E190178540099CD23 /* RLModule.m */,
+			);
+			name = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				414A804E1901781F0099CD23 /* RLModules.m in Sources */,
+				414A806F190178540099CD23 /* RLModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
