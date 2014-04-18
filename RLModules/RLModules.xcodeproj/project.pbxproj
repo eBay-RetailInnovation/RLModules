@@ -18,6 +18,8 @@
 		414A806F190178540099CD23 /* RLModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A806E190178540099CD23 /* RLModule.m */; };
 		414A80721901806F0099CD23 /* RLTableModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80711901806F0099CD23 /* RLTableModule.m */; };
 		414A80751901816F0099CD23 /* RLGridModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80741901816F0099CD23 /* RLGridModule.m */; };
+		414A8079190187EB0099CD23 /* RLModulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A8078190187EB0099CD23 /* RLModulesViewController.m */; };
+		414A807D190188E50099CD23 /* RLModulesCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		414A80711901806F0099CD23 /* RLTableModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLTableModule.m; sourceTree = "<group>"; };
 		414A80731901816F0099CD23 /* RLGridModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLGridModule.h; sourceTree = "<group>"; };
 		414A80741901816F0099CD23 /* RLGridModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLGridModule.m; sourceTree = "<group>"; };
+		414A8077190187EB0099CD23 /* RLModulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLModulesViewController.h; sourceTree = "<group>"; };
+		414A8078190187EB0099CD23 /* RLModulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLModulesViewController.m; sourceTree = "<group>"; };
+		414A807B190188E50099CD23 /* RLModulesCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLModulesCollectionViewLayout.h; sourceTree = "<group>"; };
+		414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLModulesCollectionViewLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				414A804B1901781F0099CD23 /* RLModules.h */,
+				414A807A190188D10099CD23 /* Layout */,
 				414A806C190178420099CD23 /* Modules */,
+				414A8076190187D70099CD23 /* View Controller */,
 				414A80491901781F0099CD23 /* Supporting Files */,
 			);
 			path = RLModules;
@@ -161,6 +169,24 @@
 				414A80741901816F0099CD23 /* RLGridModule.m */,
 			);
 			name = Modules;
+			sourceTree = "<group>";
+		};
+		414A8076190187D70099CD23 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				414A8077190187EB0099CD23 /* RLModulesViewController.h */,
+				414A8078190187EB0099CD23 /* RLModulesViewController.m */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		414A807A190188D10099CD23 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				414A807B190188E50099CD23 /* RLModulesCollectionViewLayout.h */,
+				414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */,
+			);
+			name = Layout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +272,8 @@
 			files = (
 				414A80721901806F0099CD23 /* RLTableModule.m in Sources */,
 				414A806F190178540099CD23 /* RLModule.m in Sources */,
+				414A8079190187EB0099CD23 /* RLModulesViewController.m in Sources */,
+				414A807D190188E50099CD23 /* RLModulesCollectionViewLayout.m in Sources */,
 				414A80751901816F0099CD23 /* RLGridModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
