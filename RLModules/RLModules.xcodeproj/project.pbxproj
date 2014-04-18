@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		414A80471901781F0099CD23 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 414A80461901781F0099CD23 /* Foundation.framework */; };
 		414A804C1901781F0099CD23 /* RLModules.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 414A804B1901781F0099CD23 /* RLModules.h */; };
-		414A804E1901781F0099CD23 /* RLModules.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A804D1901781F0099CD23 /* RLModules.m */; };
 		414A80551901781F0099CD23 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 414A80541901781F0099CD23 /* XCTest.framework */; };
 		414A80561901781F0099CD23 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 414A80461901781F0099CD23 /* Foundation.framework */; };
 		414A80581901781F0099CD23 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 414A80571901781F0099CD23 /* UIKit.framework */; };
@@ -47,7 +46,6 @@
 		414A80461901781F0099CD23 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		414A804A1901781F0099CD23 /* RLModules-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLModules-Prefix.pch"; sourceTree = "<group>"; };
 		414A804B1901781F0099CD23 /* RLModules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RLModules.h; sourceTree = "<group>"; };
-		414A804D1901781F0099CD23 /* RLModules.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RLModules.m; sourceTree = "<group>"; };
 		414A80531901781F0099CD23 /* RLModulesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RLModulesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		414A80541901781F0099CD23 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		414A80571901781F0099CD23 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -114,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				414A804B1901781F0099CD23 /* RLModules.h */,
-				414A804D1901781F0099CD23 /* RLModules.m */,
 				414A806C190178420099CD23 /* Modules */,
 				414A80491901781F0099CD23 /* Supporting Files */,
 			);
@@ -237,7 +234,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				414A804E1901781F0099CD23 /* RLModules.m in Sources */,
 				414A806F190178540099CD23 /* RLModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

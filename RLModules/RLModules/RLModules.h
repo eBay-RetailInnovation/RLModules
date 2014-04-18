@@ -6,8 +6,4 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface RLModules : NSObject
-
-@end
+#import "RLModule.h"
