@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
-#import "RLModule.h"
+#import "RLModule+Private.h"
 #import "RLModulesCollectionViewLayout.h"
 #import "RLModulesViewController.h"
 
@@ -61,8 +61,11 @@
 #pragma mark - Modules
 -(void)setModules:(NSArray *)modules
 {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
     for (RLModule *module in _modules)
     {
+        [center removeObserver:self name:kRLModuleContentInvalidationNotification object:module];
         [module removeObserver:self forKeyPath:@"hidden"];
     }
     
@@ -70,6 +73,11 @@
     
     for (RLModule *module in _modules)
     {
+        [center addObserver:self
+                   selector:@selector(moduleContentInvalidated:)
+                       name:kRLModuleContentInvalidationNotification
+                     object:module];
+        
         [module addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
     }
     
@@ -90,6 +98,11 @@
     _visibleModules = visibleModules;
     _collectionViewLayout.modules = _visibleModules;
     [_collectionView reloadData];
+}
+
+-(void)moduleContentInvalidated:(NSNotification*)notification
+{
+    
 }
 
 #pragma mark - Cell Classes

@@ -57,6 +57,7 @@
     
     for (RLModule *module in _modules)
     {
+        [center removeObserver:self name:kRLModuleContentInvalidationNotification object:module];
         [center removeObserver:self name:kRLModuleLayoutInvalidationNotification object:module];
         [module removeObserver:self forKeyPath:@"hidden"];
     }
@@ -66,8 +67,14 @@
     for (RLModule *module in _modules)
     {
         [module addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
+        
         [center addObserver:self
-                   selector:@selector(childModuleInvalidated:)
+                   selector:@selector(childModuleContentInvalidated:)
+                       name:kRLModuleContentInvalidationNotification
+                     object:module];
+        
+        [center addObserver:self
+                   selector:@selector(childModuleLayoutInvalidated:)
                        name:kRLModuleLayoutInvalidationNotification
                      object:module];
 
@@ -92,7 +99,12 @@
 }
 
 #pragma mark - Child Module Invalidation
--(void)childModuleInvalidated:(NSNotificationCenter*)notification
+-(void)childModuleContentInvalidated:(NSNotificationCenter*)notification
+{
+    [self invalidateContent];
+}
+
+-(void)childModuleLayoutInvalidated:(NSNotificationCenter*)notification
 {
     [self invalidateLayout];
 }
