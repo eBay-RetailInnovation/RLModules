@@ -10,4 +10,12 @@
 
 @interface RLModulesCollectionViewLayout : UICollectionViewLayout
 
+#pragma mark - Modules
+/** @name Modules */
+
+/**
+ The modules displayed by this layout.
+ */
+@property (nonatomic, strong) NSArray *modules;
+
 @end
