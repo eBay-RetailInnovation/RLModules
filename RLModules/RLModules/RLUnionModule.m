@@ -99,14 +99,20 @@
 }
 
 #pragma mark - Child Module Invalidation
--(void)childModuleContentInvalidated:(NSNotificationCenter*)notification
+-(void)childModuleContentInvalidated:(NSNotification*)notification
 {
-    [self invalidateContent];
+    if ([_visibleModules containsObject:notification.object])
+    {
+        [self invalidateContent];
+    }
 }
 
--(void)childModuleLayoutInvalidated:(NSNotificationCenter*)notification
+-(void)childModuleLayoutInvalidated:(NSNotification*)notification
 {
-    [self invalidateLayout];
+    if ([_visibleModules containsObject:notification.object])
+    {
+        [self invalidateLayout];
+    }
 }
 
 #pragma mark - Child Modules
