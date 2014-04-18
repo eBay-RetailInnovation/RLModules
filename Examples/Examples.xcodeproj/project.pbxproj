@@ -19,6 +19,8 @@
 		414A80A71901B3CB0099CD23 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 414A808F1901B3CB0099CD23 /* UIKit.framework */; };
 		414A80AF1901B3CB0099CD23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 414A80AD1901B3CB0099CD23 /* InfoPlist.strings */; };
 		414A80B11901B3CB0099CD23 /* ExamplesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80B01901B3CB0099CD23 /* ExamplesTests.m */; };
+		414A80C31901B3F60099CD23 /* libRLModules.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 414A80C01901B3E20099CD23 /* libRLModules.a */; };
+		414A80C61901B48F0099CD23 /* EXModulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80C51901B48F0099CD23 /* EXModulesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		414A80AE1901B3CB0099CD23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		414A80B01901B3CB0099CD23 /* ExamplesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamplesTests.m; sourceTree = "<group>"; };
 		414A80BA1901B3E20099CD23 /* RLModules.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RLModules.xcodeproj; path = ../RLModules/RLModules.xcodeproj; sourceTree = "<group>"; };
+		414A80C41901B48F0099CD23 /* EXModulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXModulesViewController.h; sourceTree = "<group>"; };
+		414A80C51901B48F0099CD23 /* EXModulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXModulesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				414A80C31901B3F60099CD23 /* libRLModules.a in Frameworks */,
 				414A808E1901B3CB0099CD23 /* CoreGraphics.framework in Frameworks */,
 				414A80901901B3CB0099CD23 /* UIKit.framework in Frameworks */,
 				414A808C1901B3CB0099CD23 /* Foundation.framework in Frameworks */,
@@ -125,6 +130,8 @@
 			children = (
 				414A809A1901B3CB0099CD23 /* EXAppDelegate.h */,
 				414A809B1901B3CB0099CD23 /* EXAppDelegate.m */,
+				414A80C41901B48F0099CD23 /* EXModulesViewController.h */,
+				414A80C51901B48F0099CD23 /* EXModulesViewController.m */,
 				414A809D1901B3CB0099CD23 /* Images.xcassets */,
 				414A80921901B3CB0099CD23 /* Supporting Files */,
 			);
@@ -288,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				414A80C61901B48F0099CD23 /* EXModulesViewController.m in Sources */,
 				414A80981901B3CB0099CD23 /* main.m in Sources */,
 				414A809C1901B3CB0099CD23 /* EXAppDelegate.m in Sources */,
 			);
@@ -410,6 +418,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Examples/Examples-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SOURCE_ROOT)/../RLModules",
+				);
 				INFOPLIST_FILE = "Examples/Examples-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -423,6 +436,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Examples/Examples-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SOURCE_ROOT)/../RLModules",
+				);
 				INFOPLIST_FILE = "Examples/Examples-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
