@@ -23,4 +23,14 @@
  */
 @property (nonatomic) CGFloat rowHeight;
 
+#pragma mark - Row Padding
+/** @name Row Padding */
+
+/**
+ The padding, in points, between each row.
+ 
+ The default value for this property is `0`.
+ */
+@property (nonatomic) CGFloat rowPadding;
+
 @end

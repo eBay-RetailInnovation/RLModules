@@ -30,13 +30,20 @@
     [self invalidateLayout];
 }
 
+#pragma mark - Row Padding
+-(void)setRowPadding:(CGFloat)rowPadding
+{
+    _rowPadding = rowPadding;
+    [self invalidateLayout];
+}
+
 #pragma mark - Layout Implementation
 -(CGFloat)prepareLayoutAttributes:(NSArray *)layoutAttributes withOrigin:(CGPoint)origin width:(CGFloat)width
 {
     for (UICollectionViewLayoutAttributes *attrs in layoutAttributes)
     {
         attrs.frame = CGRectMake(origin.x, origin.y, width, _rowHeight);
-        origin.y += _rowHeight;
+        origin.y += _rowHeight + _rowPadding;
     }
     
     return origin.y;
