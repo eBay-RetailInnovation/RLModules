@@ -11,6 +11,10 @@
 #import "RLModulesViewController.h"
 
 @interface RLModulesViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+{
+@private
+    RLModulesCollectionViewLayout *_collectionViewLayout;
+}
 
 @end
 
@@ -21,14 +25,24 @@
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     
-    RLModulesCollectionViewLayout *layout = [RLModulesCollectionViewLayout new];
-    _collectionView = [[UICollectionView alloc] initWithFrame:view.bounds collectionViewLayout:layout];
+    _collectionViewLayout = [RLModulesCollectionViewLayout new];
+    _collectionViewLayout.modules = _modules;
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:view.bounds collectionViewLayout:_collectionViewLayout];
     _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     [view addSubview:_collectionView];
     
     self.view = view;
+}
+
+#pragma mark - Modules
+-(void)setModules:(NSArray *)modules
+{
+    _modules = modules;
+    _collectionViewLayout.modules = modules;
+    [_collectionView reloadData];
 }
 
 #pragma mark - Cell Classes
