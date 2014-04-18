@@ -16,9 +16,17 @@
     RLModulesCollectionViewLayout *_collectionViewLayout;
 }
 
+@property (nonatomic, strong) NSArray *visibleModules;
+
 @end
 
 @implementation RLModulesViewController
+
+#pragma mark - Deallocation
+-(void)dealloc
+{
+    self.modules = nil;
+}
 
 #pragma mark - View Loading
 -(void)loadView
@@ -37,11 +45,50 @@
     self.view = view;
 }
 
+#pragma mark - KVO
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"hidden"] && [_modules containsObject:object])
+    {
+        self.visibleModules = [self visibleModulesInArray:_modules];
+    }
+    else
+    {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 #pragma mark - Modules
 -(void)setModules:(NSArray *)modules
 {
+    for (RLModule *module in modules)
+    {
+        [module removeObserver:self forKeyPath:@"hidden"];
+    }
+    
     _modules = modules;
-    _collectionViewLayout.modules = modules;
+    
+    for (RLModule *module in modules)
+    {
+        [module addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
+    }
+    
+    self.visibleModules = [self visibleModulesInArray:_modules];
+}
+
+-(NSArray*)visibleModulesInArray:(NSArray*)array
+{
+    NSIndexSet *set = [array indexesOfObjectsPassingTest:^BOOL(RLModule *module, NSUInteger idx, BOOL *stop) {
+        return !module.hidden;
+    }];
+    
+    return [array objectsAtIndexes:set];
+}
+
+-(void)setVisibleModules:(NSArray *)visibleModules
+{
+    _visibleModules = visibleModules;
+    _collectionViewLayout.modules = _visibleModules;
     [_collectionView reloadData];
 }
 

@@ -14,9 +14,18 @@
 /** @name Modules */
 
 /**
- The modules currently displayed by this view controller.
+ The modules currently represented in this view controller.
+ 
+ This includes modules with their `[RLModule hidden]` property set to `YES`.
  */
 @property (nonatomic, strong) NSArray *modules;
+
+/**
+ The modules currently visible in this view controller.
+ 
+ This does not include modules with their `[RLModule hidden]` property set to `YES`.
+ */
+@property (nonatomic, readonly, strong) NSArray *visibleModules;
 
 #pragma mark - Cell Classes
 /** @name Cell Classes */

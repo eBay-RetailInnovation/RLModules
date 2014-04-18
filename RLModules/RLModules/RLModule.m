@@ -12,13 +12,6 @@
 
 @implementation RLModule
 
-#pragma mark - Hiding
--(void)setHidden:(BOOL)hidden
-{
-    _hidden = hidden;
-    [self invalidateLayout];
-}
-
 #pragma mark - Background
 -(void)setBackgroundColor:(UIColor *)backgroundColor
 {
