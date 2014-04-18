@@ -24,6 +24,8 @@
     RLModulesCollectionViewLayout *layout = [RLModulesCollectionViewLayout new];
     _collectionView = [[UICollectionView alloc] initWithFrame:view.bounds collectionViewLayout:layout];
     _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
     [view addSubview:_collectionView];
     
     self.view = view;
