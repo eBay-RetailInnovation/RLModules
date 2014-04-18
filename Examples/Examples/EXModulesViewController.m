@@ -11,8 +11,14 @@
 @interface EXModulesViewController () <RLModuleDataSource, RLModuleDelegate>
 {
 @private
+    // basic module
     RLTableModule *_tableModule;
     RLGridModule *_gridModule;
+    
+    // header module
+    RLUnionModule *_unionModule;
+    RLTableModule *_unionHeaderModule;
+    RLGridModule *_unionContentModule;
 }
 
 @end
@@ -29,6 +35,7 @@
     // modules
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
     
+    // basic modules
     _tableModule = [RLTableModule new];
     _tableModule.dataSource = self;
     _tableModule.delegate = self;
@@ -39,7 +46,19 @@
     _gridModule.delegate = self;
     _gridModule.edgeInsets = edgeInsets;
     
-    self.modules = @[_tableModule, _gridModule];
+    // header module
+    _unionHeaderModule = [RLTableModule new];
+    _unionHeaderModule.dataSource = self;
+    _unionHeaderModule.delegate = self;
+    _unionHeaderModule.rowHeight = 22;
+    
+    _unionContentModule = [RLGridModule new];
+    _unionContentModule.dataSource = self;
+    _unionContentModule.delegate = self;
+    
+    _unionModule = [RLUnionModule unionModuleWithModules:@[_unionHeaderModule, _unionContentModule]];
+    
+    self.modules = @[_tableModule, _gridModule, _unionModule];
 }
 
 #pragma mark - Module Data Source
