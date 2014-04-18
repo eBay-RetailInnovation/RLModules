@@ -8,4 +8,5 @@ appledoc --project-name RLModules \
          --keep-undocumented-objects \
          --keep-undocumented-members \
          --no-repeat-first-par \
-         ../RLModules/RLModules/*.h
+         -o $(dirname $0) \
+         $(dirname $0)/../RLModules/RLModules/*.h
