@@ -10,8 +10,10 @@
 
 @class RLModule;
 
+#pragma mark - RLModuleDataSource
 @protocol RLModuleDataSource <NSObject>
 
+#pragma mark - Item Counts
 /** @name Item Counts */
 
 /**
@@ -24,6 +26,7 @@
  */
 -(NSInteger)numberOfItemsInModule:(RLModule*)module;
 
+#pragma mark - Views for Items
 /** @name Views for Items */
 
 /**
@@ -42,9 +45,94 @@
 
 @end
 
+#pragma mark - RLModuleDelegate
+
 @protocol RLModuleDelegate <NSObject>
 
+@optional
+
+#pragma mark - Selected Items
+/** @name Selected Items */
+
+/**
+ Asks the delegate if the item at the specified index should be selected.
+ 
+ If this method is not implemented, the implicit return value is `YES`.
+ 
+ This method will not be called when the selection is set programmatically.
+ 
+ @param module The module requesting this information.
+ @param index The index of the item to be selected.
+ @returns `YES` if the item should be selected, or `NO` if it should not.
+ */
+-(BOOL)module:(RLModule*)module shouldSelectedItemAtIndex:(NSInteger)index;
+
+/**
+ Notifies the delegate that the item at the specified index has been selected.
+ 
+ This method will not be called when the selection is set programmatically.
+ 
+ @param module The module sending this information.
+ @param index The index of the item that has been selected.
+ */
+-(void)module:(RLModule*)module didSelectItemAtIndex:(NSInteger)index;
+
+/**
+ Asks the delegate if the item at the specified index should be deselected.
+ 
+ If this method is not implemented, the implicit return value is `YES`.
+ 
+ This method will not be called when the selection is set programmatically.
+ 
+ @param module The module requesting this information.
+ @param index The index of the item to be deselected.
+ @returns `YES` if the item should be deselected, or `NO` if it should not.
+ */
+-(BOOL)module:(RLModule*)module shouldDeselectItemAtIndex:(NSInteger)index;
+
+/**
+ Notifies the delegate that the item at the specified index has been deselected.
+ 
+ This method will not be called when the selection is set programmatically.
+ 
+ @param module The module sending this information.
+ @param index The index of the item that has been deselected.
+ */
+-(void)module:(RLModule*)module didDeselectItemAtIndex:(NSInteger)index;
+
+#pragma mark - Highlighted Items
+/** @name Highlighted Items */
+
+/**
+ Asks the delegate if the item at the specified index should be highlighted.
+ 
+ If this method is not implemented, the implicit return value is `YES`.
+ 
+ @param module The module requesting this information.
+ @param index The index of the item to be highlighted.
+ @returns `YES` if the item should be highlighted, or `NO` if it should not.
+ */
+-(BOOL)module:(RLModule *)module shouldHighlightItemAtIndex:(NSInteger)index;
+
+/**
+ Notifies the delegate that the item at the specified index has been highlighted.
+ 
+ @param module The module sending this information.
+ @param index The index of the item that has been highlighted.
+ */
+-(void)module:(RLModule*)module didHighlightItemAtIndex:(NSInteger)index;
+
+/**
+ Notifies the delegate that the item at the specified index has been unhighlighted.
+ 
+ @param module The module sending this information.
+ @param index The index of the item that has been unhighlighted.
+ */
+-(void)module:(RLModule*)module didUnhighlightItemAtIndex:(NSInteger)index;
+
 @end
+
+#pragma mark - RLModule
 
 @interface RLModule : NSObject
 
