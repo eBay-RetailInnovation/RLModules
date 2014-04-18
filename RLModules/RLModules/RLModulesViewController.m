@@ -61,14 +61,14 @@
 #pragma mark - Modules
 -(void)setModules:(NSArray *)modules
 {
-    for (RLModule *module in modules)
+    for (RLModule *module in _modules)
     {
         [module removeObserver:self forKeyPath:@"hidden"];
     }
     
     _modules = modules;
     
-    for (RLModule *module in modules)
+    for (RLModule *module in _modules)
     {
         [module addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
     }
