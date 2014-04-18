@@ -20,6 +20,7 @@
 		414A80751901816F0099CD23 /* RLGridModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80741901816F0099CD23 /* RLGridModule.m */; };
 		414A8079190187EB0099CD23 /* RLModulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A8078190187EB0099CD23 /* RLModulesViewController.m */; };
 		414A807D190188E50099CD23 /* RLModulesCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */; };
+		414A80CC1901BB6E0099CD23 /* RLUnionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80CB1901BB6E0099CD23 /* RLUnionModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		414A807B190188E50099CD23 /* RLModulesCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLModulesCollectionViewLayout.h; sourceTree = "<group>"; };
 		414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLModulesCollectionViewLayout.m; sourceTree = "<group>"; };
 		414A807E190198F10099CD23 /* RLModule+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLModule+Private.h"; sourceTree = "<group>"; };
+		414A80CA1901BB6E0099CD23 /* RLUnionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLUnionModule.h; sourceTree = "<group>"; };
+		414A80CB1901BB6E0099CD23 /* RLUnionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLUnionModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 				414A80711901806F0099CD23 /* RLTableModule.m */,
 				414A80731901816F0099CD23 /* RLGridModule.h */,
 				414A80741901816F0099CD23 /* RLGridModule.m */,
+				414A80CA1901BB6E0099CD23 /* RLUnionModule.h */,
+				414A80CB1901BB6E0099CD23 /* RLUnionModule.m */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				414A80721901806F0099CD23 /* RLTableModule.m in Sources */,
 				414A806F190178540099CD23 /* RLModule.m in Sources */,
 				414A8079190187EB0099CD23 /* RLModulesViewController.m in Sources */,
+				414A80CC1901BB6E0099CD23 /* RLUnionModule.m in Sources */,
 				414A807D190188E50099CD23 /* RLModulesCollectionViewLayout.m in Sources */,
 				414A80751901816F0099CD23 /* RLGridModule.m in Sources */,
 			);
