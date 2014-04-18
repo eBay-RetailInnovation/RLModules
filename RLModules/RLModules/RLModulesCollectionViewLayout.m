@@ -110,9 +110,9 @@ static NSArray* RLModulesCollectionViewLayoutMapToInteger(NSUInteger integer, RL
             // layout
             UIEdgeInsets edgeInsets = module.edgeInsets;
             yOffset += edgeInsets.top;
-            yOffset += [module prepareLayoutAttributes:layoutAttributes
-                                            withOrigin:CGPointMake(edgeInsets.left, yOffset)
-                                                 width:width - edgeInsets.left - edgeInsets.right];
+            yOffset = [module prepareLayoutAttributes:layoutAttributes
+                                           withOrigin:CGPointMake(edgeInsets.left, yOffset)
+                                                width:width - edgeInsets.left - edgeInsets.right];
             yOffset += edgeInsets.bottom;
             
             // add bottom padding
