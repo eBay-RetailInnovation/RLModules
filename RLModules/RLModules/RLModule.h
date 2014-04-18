@@ -65,7 +65,7 @@
  @param index The index of the item to be selected.
  @returns `YES` if the item should be selected, or `NO` if it should not.
  */
--(BOOL)module:(RLModule*)module shouldSelectedItemAtIndex:(NSInteger)index;
+-(BOOL)module:(RLModule*)module shouldSelectItemAtIndex:(NSInteger)index;
 
 /**
  Notifies the delegate that the item at the specified index has been selected.
