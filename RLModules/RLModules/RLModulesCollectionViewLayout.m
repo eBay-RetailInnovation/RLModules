@@ -121,6 +121,8 @@ static NSArray* RLModulesCollectionViewLayoutMapToInteger(NSUInteger integer, RL
             
             return layoutAttributes;
         });
+        
+        _contentSize = CGSizeMake(width, yOffset);
     }
     else
     {
