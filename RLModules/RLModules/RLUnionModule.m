@@ -79,6 +79,36 @@
     return offset;
 }
 
+#pragma mark - Layout
+-(CGFloat)prepareLayoutAttributes:(NSArray *)layoutAttributes withOrigin:(CGPoint)origin width:(CGFloat)width
+{
+    NSUInteger count = _modules.count;
+    NSUInteger offset = 0;
+    
+    for (NSUInteger i = 0; i < count; i++)
+    {
+        RLModule *module = _modules[i];
+        NSUInteger itemCount = module.numberOfItems;
+        
+        // layout
+        UIEdgeInsets edgeInsets = module.edgeInsets;
+        origin.y += edgeInsets.top;
+        origin.y = [module prepareLayoutAttributes:[layoutAttributes subarrayWithRange:NSMakeRange(offset, itemCount)]
+                                        withOrigin:CGPointMake(edgeInsets.left, origin.y)
+                                             width:width - edgeInsets.left - edgeInsets.right];
+        origin.y += edgeInsets.bottom;
+        
+        // add bottom padding
+        RLModule *nextModule = i + 1 < count ? _modules[i + 1] : nil;
+        origin.y += MAX(module.minimumBottomPadding, nextModule.minimumTopPadding);
+        
+        // offset
+        offset += itemCount;
+    }
+    
+    return origin.y;
+}
+
 #pragma mark - Module Data Source
 -(NSInteger)numberOfItemsInModule:(RLModule *)module
 {
