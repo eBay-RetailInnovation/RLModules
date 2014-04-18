@@ -8,4 +8,5 @@
 
 #import "RLModule.h"
 
-FOUNDATION_EXTERN NSString *const kRLModuleInvalidationNotification;
+FOUNDATION_EXTERN NSString *const kRLModuleLayoutInvalidationNotification;
+FOUNDATION_EXTERN NSString *const kRLModuleContentInvalidationNotification;

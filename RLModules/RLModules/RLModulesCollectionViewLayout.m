@@ -54,7 +54,7 @@ static NSArray* RLModulesCollectionViewLayoutMapToInteger(NSUInteger integer, RL
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     for (RLModule *module in _modules)
     {
-        [center removeObserver:self name:kRLModuleInvalidationNotification object:module];
+        [center removeObserver:self name:kRLModuleLayoutInvalidationNotification object:module];
     }
     
     _modules = modules;
@@ -63,7 +63,7 @@ static NSArray* RLModulesCollectionViewLayoutMapToInteger(NSUInteger integer, RL
     {
         [center addObserver:self
                    selector:@selector(moduleInvalidated:)
-                       name:kRLModuleInvalidationNotification
+                       name:kRLModuleLayoutInvalidationNotification
                      object:module];
     }
 }

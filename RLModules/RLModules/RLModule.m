@@ -10,7 +10,8 @@
 #import "RLModule+Private.h"
 #import "RLModulesCollectionViewLayout.h"
 
-NSString *const kRLModuleInvalidationNotification = @"kRLModuleInvalidationNotification";
+NSString *const kRLModuleLayoutInvalidationNotification = @"kRLModuleLayoutInvalidationNotification";
+NSString *const kRLModuleContentInvalidationNotification = @"kRLModuleContentInvalidationNotification";
 
 @implementation RLModule
 
@@ -43,7 +44,7 @@ NSString *const kRLModuleInvalidationNotification = @"kRLModuleInvalidationNotif
 #pragma mark - Layout Implementation
 -(void)invalidateLayout
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kRLModuleInvalidationNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRLModuleLayoutInvalidationNotification object:self];
 }
 
 -(CGFloat)prepareLayoutAttributes:(NSArray*)layoutAttributes
@@ -55,6 +56,11 @@ NSString *const kRLModuleInvalidationNotification = @"kRLModuleInvalidationNotif
 }
 
 #pragma mark - Module State
+-(void)invalidateContent
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRLModuleContentInvalidationNotification object:self];
+}
+
 -(NSInteger)numberOfItems
 {
     return [_dataSource numberOfItemsInModule:self];

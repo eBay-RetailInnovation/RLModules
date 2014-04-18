@@ -168,12 +168,8 @@
 				414A806D190178540099CD23 /* RLModule.h */,
 				414A807E190198F10099CD23 /* RLModule+Private.h */,
 				414A806E190178540099CD23 /* RLModule.m */,
-				414A80701901806F0099CD23 /* RLTableModule.h */,
-				414A80711901806F0099CD23 /* RLTableModule.m */,
-				414A80731901816F0099CD23 /* RLGridModule.h */,
-				414A80741901816F0099CD23 /* RLGridModule.m */,
-				414A80CA1901BB6E0099CD23 /* RLUnionModule.h */,
-				414A80CB1901BB6E0099CD23 /* RLUnionModule.m */,
+				43F097391901E52200DF0083 /* Basic */,
+				43F0973A1901E52D00DF0083 /* Meta */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -194,6 +190,34 @@
 				414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */,
 			);
 			name = Layout;
+			sourceTree = "<group>";
+		};
+		43F097391901E52200DF0083 /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				414A80701901806F0099CD23 /* RLTableModule.h */,
+				414A80711901806F0099CD23 /* RLTableModule.m */,
+				414A80731901816F0099CD23 /* RLGridModule.h */,
+				414A80741901816F0099CD23 /* RLGridModule.m */,
+			);
+			name = Basic;
+			sourceTree = "<group>";
+		};
+		43F0973A1901E52D00DF0083 /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				43F0973B1901E53500DF0083 /* Union */,
+			);
+			name = Meta;
+			sourceTree = "<group>";
+		};
+		43F0973B1901E53500DF0083 /* Union */ = {
+			isa = PBXGroup;
+			children = (
+				414A80CA1901BB6E0099CD23 /* RLUnionModule.h */,
+				414A80CB1901BB6E0099CD23 /* RLUnionModule.m */,
+			);
+			name = Union;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

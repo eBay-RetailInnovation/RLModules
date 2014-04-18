@@ -57,7 +57,7 @@
     
     for (RLModule *module in _modules)
     {
-        [center removeObserver:self name:kRLModuleInvalidationNotification object:module];
+        [center removeObserver:self name:kRLModuleLayoutInvalidationNotification object:module];
         [module removeObserver:self forKeyPath:@"hidden"];
     }
     
@@ -68,7 +68,7 @@
         [module addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
         [center addObserver:self
                    selector:@selector(childModuleInvalidated:)
-                       name:kRLModuleInvalidationNotification
+                       name:kRLModuleLayoutInvalidationNotification
                      object:module];
 
     }

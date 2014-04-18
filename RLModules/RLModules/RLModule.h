@@ -226,6 +226,14 @@
 /** @name Module State */
 
 /**
+ Indicates that the content of the module has changed, and that the module should be reloaded.
+ 
+ Subclasses (especially meta-modules) may use this if a property changes that would alter the number of items in the
+ module. Clients may use this when the model changes.
+ */
+-(void)invalidateContent;
+
+/**
  Returns the number of items in the module.
  
  @returns The number of items in the module.
