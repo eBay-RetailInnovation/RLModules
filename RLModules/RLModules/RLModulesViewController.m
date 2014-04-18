@@ -31,6 +31,25 @@
     self.view = view;
 }
 
+#pragma mark - Cell Classes
+-(void)registerCellClassForReuse:(Class)klass
+{
+    [_collectionView registerClass:klass forCellWithReuseIdentifier:NSStringFromClass(klass)];
+}
+
+-(void)registerCellClassesForReuse:(NSArray*)classes
+{
+    for (Class klass in classes)
+    {
+        [self registerCellClassForReuse:klass];
+    }
+}
+
+-(id)dequeueCellOfClass:(Class)klass atIndexPath:(NSIndexPath*)indexPath
+{
+    return [_collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(klass) forIndexPath:indexPath];
+}
+
 #pragma mark - Collection View Data Source
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {

@@ -18,6 +18,38 @@
  */
 @property (nonatomic, strong) NSArray *modules;
 
+#pragma mark - Cell Classes
+/** @name Cell Classes */
+
+/**
+ Registers a cell class for reuse.
+ 
+ The reuse identifier registered is the class name.
+ 
+ @param klass The cell class to register.
+ */
+-(void)registerCellClassForReuse:(Class)klass;
+
+/**
+ Registers an array of cell classes for reuse.
+ 
+ The reuse identifier registered for each class is the class name.
+ 
+ @param classes An array of cell classes to register.
+ */
+-(void)registerCellClassesForReuse:(NSArray*)classes;
+
+/**
+ Dequeues a cell of the specified class at the specified index path.
+ 
+ The cell class must have been previously registered with `-registerCellClassForReuse`.
+ 
+ @param klass The cell class to dequeue.
+ @param indexPath The index path to dequeue at.
+ @returns An instance of `klass`.
+ */
+-(id)dequeueCellOfClass:(Class)klass atIndexPath:(NSIndexPath*)indexPath;
+
 #pragma mark - Collection View
 /** @name Collection View */
 
