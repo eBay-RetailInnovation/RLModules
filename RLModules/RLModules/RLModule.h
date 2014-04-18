@@ -35,13 +35,15 @@
  This message is required.
  
  @param module The module requesting this information.
- @param indexPath The index path that specifies the location of the item.
+ @param index The logical index for the item, within the module. Use this index to retrieve data.
  @param collectionView The collection view containing the module.
+ @param indexPath The absolute index path for the item in the collection view. Use this index path to dequeue cells.
  @returns A configured cell object. This message must not return `nil`.
  */
 -(UICollectionViewCell*)module:(RLModule*)module
-        cellForItemAtIndexPath:(NSIndexPath*)indexPath
-              inCollectionView:(UICollectionView*)collectionView;
+            cellForItemAtIndex:(NSInteger)index
+              inCollectionView:(UICollectionView*)collectionView
+                 withIndexPath:(NSIndexPath*)indexPath;
 
 @end
 

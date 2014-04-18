@@ -49,8 +49,9 @@
 }
 
 -(UICollectionViewCell*)module:(RLModule *)module
-        cellForItemAtIndexPath:(NSIndexPath *)indexPath
+            cellForItemAtIndex:(NSInteger)index
               inCollectionView:(UICollectionView *)collectionView
+                 withIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [self dequeueCellOfClass:[UICollectionViewCell class] atIndexPath:indexPath];
     cell.backgroundColor = [UIColor redColor];

@@ -125,7 +125,10 @@
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    return [module.dataSource module:module cellForItemAtIndexPath:indexPath inCollectionView:collectionView];
+    return [module.dataSource module:module
+                  cellForItemAtIndex:indexPath.item
+                    inCollectionView:collectionView
+                       withIndexPath:indexPath];
 }
 
 #pragma mark - Collection View Delegate
