@@ -10,6 +10,8 @@
 #import "RLModule+Private.h"
 #import "RLModulesCollectionViewLayout.h"
 
+NSString *const kRLModuleInvalidationNotification = @"kRLModuleInvalidationNotification";
+
 @implementation RLModule
 
 #pragma mark - Background
@@ -41,7 +43,7 @@
 #pragma mark - Layout Implementation
 -(void)invalidateLayout
 {
-    [_collectionViewLayout invalidateLayout];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRLModuleInvalidationNotification object:self];
 }
 
 -(CGFloat)prepareLayoutAttributes:(NSArray*)layoutAttributes

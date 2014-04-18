@@ -51,17 +51,26 @@ static NSArray* RLModulesCollectionViewLayoutMapToInteger(NSUInteger integer, RL
 #pragma mark - Modules
 -(void)setModules:(NSArray *)modules
 {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     for (RLModule *module in _modules)
     {
-        module.collectionViewLayout = nil;
+        [center removeObserver:self name:kRLModuleInvalidationNotification object:module];
     }
     
     _modules = modules;
     
     for (RLModule *module in _modules)
     {
-        module.collectionViewLayout = self;
+        [center addObserver:self
+                   selector:@selector(moduleInvalidated:)
+                       name:kRLModuleInvalidationNotification
+                     object:module];
     }
+}
+
+-(void)moduleInvalidated:(NSNotification*)notification
+{
+    [self invalidateLayout];
 }
 
 #pragma mark - Content Size

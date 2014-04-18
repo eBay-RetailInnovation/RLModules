@@ -8,10 +8,4 @@
 
 #import "RLModule.h"
 
-@class RLModulesCollectionViewLayout;
-
-@interface RLModule ()
-
-@property (nonatomic, weak) RLModulesCollectionViewLayout *collectionViewLayout;
-
-@end
+FOUNDATION_EXTERN NSString *const kRLModuleInvalidationNotification;
