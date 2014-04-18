@@ -58,25 +58,26 @@
 }
 
 #pragma mark - Child Modules
--(NSInteger)indexPathItemOffsetForChildModule:(RLModule*)childModule
+-(id)operateOnChildModuleAtIndexPath:(NSIndexPath*)path
+                         withHandler:(id(^)(RLModule *childModule, NSInteger logicalIndex))handler
 {
     NSInteger offset = 0;
     
-    for (NSInteger i = 0; i < _modules.count; i++)
+    for (RLModule *module in _modules)
     {
-        RLModule *module = _modules[i];
+        NSInteger numberOfItems = module.numberOfItems;
         
-        if (module == childModule)
+        if (offset + numberOfItems > path.item)
         {
-            break;
+            return handler(module, path.item - offset);
         }
         else
         {
-            offset -= module.numberOfItems;
+            offset += numberOfItems;
         }
     }
     
-    return offset;
+    return nil;
 }
 
 #pragma mark - Layout
@@ -127,10 +128,12 @@
               inCollectionView:(UICollectionView *)collectionView
                  withIndexPath:(NSIndexPath *)indexPath
 {
-    return [module.dataSource module:module
-                  cellForItemAtIndex:indexPath.item + [self indexPathItemOffsetForChildModule:module]
-                    inCollectionView:collectionView
-                       withIndexPath:indexPath];
+    return [self operateOnChildModuleAtIndexPath:indexPath withHandler:^id(RLModule *childModule, NSInteger logicalIndex) {
+        return [childModule.dataSource module:childModule
+                           cellForItemAtIndex:logicalIndex
+                             inCollectionView:collectionView
+                                withIndexPath:indexPath];
+    }];
 }
 
 @end
