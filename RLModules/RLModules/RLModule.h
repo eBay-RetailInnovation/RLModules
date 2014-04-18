@@ -8,7 +8,57 @@
 
 #import <UIKit/UIKit.h>
 
+@class RLModule;
+
+@protocol RLModuleDataSource <NSObject>
+
+/** @name Item Counts */
+
+/**
+ Asks the data source for the number of items in the module.
+ 
+ This message is required.
+ 
+ @param module The module requesting this information.
+ @returns The number of items in `module`.
+ */
+-(NSInteger)numberOfItemsInModule:(RLModule*)module;
+
+/** @name Views for Items */
+
+/**
+ Asks the data source for a cell representing the specified index path.
+ 
+ This message is required.
+ 
+ @param module The module requesting this information.
+ @param indexPath The index path that specifies the location of the item.
+ @param collectionView The collection view containing the module.
+ @returns A configured cell object. This message must not return `nil`.
+ */
+-(UICollectionViewCell*)module:(RLModule*)module
+        cellForItemAtIndexPath:(NSIndexPath*)indexPath
+              inCollectionView:(UICollectionView*)collectionView;
+
+@end
+
+@protocol RLModuleDelegate <NSObject>
+
+@end
+
 @interface RLModule : NSObject
+
+#pragma mark - Data Source
+/** @name Data Source */
+
+/** The data source for this module. */
+@property (nonatomic, weak) id<RLModuleDataSource> dataSource;
+
+#pragma mark - Delegate
+/** @name Delegate */
+
+/** The delegate for this module. */
+@property (nonatomic, weak) id<RLModuleDelegate> delegate;
 
 #pragma mark - Hiding
 /** @name Hiding */
