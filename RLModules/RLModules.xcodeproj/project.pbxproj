@@ -16,6 +16,8 @@
 		414A80611901781F0099CD23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 414A805F1901781F0099CD23 /* InfoPlist.strings */; };
 		414A80631901781F0099CD23 /* RLModulesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80621901781F0099CD23 /* RLModulesTests.m */; };
 		414A806F190178540099CD23 /* RLModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A806E190178540099CD23 /* RLModule.m */; };
+		414A80721901806F0099CD23 /* RLTableModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80711901806F0099CD23 /* RLTableModule.m */; };
+		414A80751901816F0099CD23 /* RLGridModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80741901816F0099CD23 /* RLGridModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		414A80621901781F0099CD23 /* RLModulesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RLModulesTests.m; sourceTree = "<group>"; };
 		414A806D190178540099CD23 /* RLModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLModule.h; sourceTree = "<group>"; };
 		414A806E190178540099CD23 /* RLModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLModule.m; sourceTree = "<group>"; };
+		414A80701901806F0099CD23 /* RLTableModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLTableModule.h; sourceTree = "<group>"; };
+		414A80711901806F0099CD23 /* RLTableModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLTableModule.m; sourceTree = "<group>"; };
+		414A80731901816F0099CD23 /* RLGridModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLGridModule.h; sourceTree = "<group>"; };
+		414A80741901816F0099CD23 /* RLGridModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLGridModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,10 @@
 			children = (
 				414A806D190178540099CD23 /* RLModule.h */,
 				414A806E190178540099CD23 /* RLModule.m */,
+				414A80701901806F0099CD23 /* RLTableModule.h */,
+				414A80711901806F0099CD23 /* RLTableModule.m */,
+				414A80731901816F0099CD23 /* RLGridModule.h */,
+				414A80741901816F0099CD23 /* RLGridModule.m */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -234,7 +244,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				414A80721901806F0099CD23 /* RLTableModule.m in Sources */,
 				414A806F190178540099CD23 /* RLModule.m in Sources */,
+				414A80751901816F0099CD23 /* RLGridModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +427,7 @@
 				414A80681901781F0099CD23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		414A80691901781F0099CD23 /* Build configuration list for PBXNativeTarget "RLModulesTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +436,7 @@
 				414A806B1901781F0099CD23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
