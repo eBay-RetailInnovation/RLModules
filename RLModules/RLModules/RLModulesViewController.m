@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
+#import "RLModule.h"
 #import "RLModulesCollectionViewLayout.h"
 #import "RLModulesViewController.h"
 
-@interface RLModulesViewController ()
+@interface RLModulesViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
 
@@ -26,6 +27,23 @@
     [view addSubview:_collectionView];
     
     self.view = view;
+}
+
+#pragma mark - Collection View Data Source
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return _modules.count;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [(RLModule*)_modules[section] numberOfItems];
+}
+
+-(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    RLModule *module = _modules[indexPath.section];
+    return [module.dataSource module:module cellForItemAtIndexPath:indexPath inCollectionView:collectionView];
 }
 
 @end

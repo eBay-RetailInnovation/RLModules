@@ -57,4 +57,10 @@
     return 0.0;
 }
 
+#pragma mark - Module State
+-(NSInteger)numberOfItems
+{
+    return [_dataSource numberOfItemsInModule:self];
+}
+
 @end

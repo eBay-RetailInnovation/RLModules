@@ -132,4 +132,14 @@
                        withOrigin:(CGPoint)origin
                             width:(CGFloat)width;
 
+#pragma mark - Module State
+/** @name Module State */
+
+/**
+ Returns the number of items in the module.
+ 
+ @returns The number of items in the module.
+ */
+-(NSInteger)numberOfItems;
+
 @end
