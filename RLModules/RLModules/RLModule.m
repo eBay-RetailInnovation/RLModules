@@ -7,6 +7,8 @@
 //
 
 #import "RLModule.h"
+#import "RLModule+Private.h"
+#import "RLModulesCollectionViewLayout.h"
 
 @implementation RLModule
 
@@ -46,7 +48,7 @@
 #pragma mark - Layout Implementation
 -(void)invalidateLayout
 {
-    // TODO: implement
+    [_collectionViewLayout invalidateLayout];
 }
 
 -(CGFloat)prepareLayoutAttributes:(NSArray*)layoutAttributes

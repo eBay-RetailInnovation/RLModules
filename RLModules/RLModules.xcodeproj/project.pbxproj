@@ -66,6 +66,7 @@
 		414A8078190187EB0099CD23 /* RLModulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLModulesViewController.m; sourceTree = "<group>"; };
 		414A807B190188E50099CD23 /* RLModulesCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLModulesCollectionViewLayout.h; sourceTree = "<group>"; };
 		414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLModulesCollectionViewLayout.m; sourceTree = "<group>"; };
+		414A807E190198F10099CD23 /* RLModule+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLModule+Private.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				414A806D190178540099CD23 /* RLModule.h */,
+				414A807E190198F10099CD23 /* RLModule+Private.h */,
 				414A806E190178540099CD23 /* RLModule.m */,
 				414A80701901806F0099CD23 /* RLTableModule.h */,
 				414A80711901806F0099CD23 /* RLTableModule.m */,
