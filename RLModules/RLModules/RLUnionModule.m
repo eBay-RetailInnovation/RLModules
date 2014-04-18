@@ -11,35 +11,21 @@
 
 @interface RLUnionModule () <RLModuleDataSource, RLModuleDelegate>
 
+@property (nonatomic, strong) NSArray *childModules;
+
 @end
 
 @implementation RLUnionModule
 
 #pragma mark - Initialization
-+(instancetype)unionModuleWithModules:(NSArray*)modules
+-(id)init
 {
-    return [[self alloc] initWithModules:modules];
-}
-
--(instancetype)initWithModules:(NSArray*)modules
-{
-    self = [self init];
+    self = [super init];
     
     if (self)
     {
         self.dataSource = self;
         self.delegate = self;
-        
-        _modules = modules;
-        
-        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-        for (RLModule *module in _modules)
-        {
-            [center addObserver:self
-                       selector:@selector(childModuleInvalidated:)
-                           name:kRLModuleInvalidationNotification
-                         object:module];
-        }
     }
     
     return self;
@@ -49,6 +35,60 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - KVO
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"hidden"] && [_modules containsObject:object])
+    {
+        self.visibleModules = [self visibleModulesInArray:_modules];
+    }
+    else
+    {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+#pragma mark - Modules
+-(void)setModules:(NSArray *)modules
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    for (RLModule *module in _modules)
+    {
+        [center removeObserver:self name:kRLModuleInvalidationNotification object:module];
+        [module removeObserver:self forKeyPath:@"hidden"];
+    }
+    
+    _modules = modules;
+    
+    for (RLModule *module in _modules)
+    {
+        [module addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
+        [center addObserver:self
+                   selector:@selector(childModuleInvalidated:)
+                       name:kRLModuleInvalidationNotification
+                     object:module];
+
+    }
+    
+    self.visibleModules = [self visibleModulesInArray:_modules];
+}
+
+-(NSArray*)visibleModulesInArray:(NSArray*)array
+{
+    NSIndexSet *set = [array indexesOfObjectsPassingTest:^BOOL(RLModule *module, NSUInteger idx, BOOL *stop) {
+        return !module.hidden;
+    }];
+    
+    return [array objectsAtIndexes:set];
+}
+
+-(void)setVisibleModules:(NSArray *)visibleModules
+{
+    _visibleModules = visibleModules;
+    [self invalidateLayout];
 }
 
 #pragma mark - Child Module Invalidation
@@ -62,7 +102,7 @@
 {
     NSInteger offset = 0;
     
-    for (RLModule *module in _modules)
+    for (RLModule *module in _visibleModules)
     {
         NSInteger numberOfItems = module.numberOfItems;
         
@@ -83,12 +123,12 @@
 #pragma mark - Layout
 -(CGFloat)prepareLayoutAttributes:(NSArray *)layoutAttributes withOrigin:(CGPoint)origin width:(CGFloat)width
 {
-    NSUInteger count = _modules.count;
+    NSUInteger count = _visibleModules.count;
     NSUInteger offset = 0;
     
     for (NSUInteger i = 0; i < count; i++)
     {
-        RLModule *module = _modules[i];
+        RLModule *module = _visibleModules[i];
         NSUInteger itemCount = module.numberOfItems;
         
         // layout
@@ -100,7 +140,7 @@
         origin.y += edgeInsets.bottom;
         
         // add bottom padding
-        RLModule *nextModule = i + 1 < count ? _modules[i + 1] : nil;
+        RLModule *nextModule = i + 1 < count ? _visibleModules[i + 1] : nil;
         origin.y += MAX(module.minimumBottomPadding, nextModule.minimumTopPadding);
         
         // offset
@@ -115,7 +155,7 @@
 {
     NSInteger sum = 0;
     
-    for (RLModule *childModule in _modules)
+    for (RLModule *childModule in _visibleModules)
     {
         sum += childModule.numberOfItems;
     }

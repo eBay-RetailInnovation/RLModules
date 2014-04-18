@@ -56,7 +56,13 @@
     _unionContentModule.dataSource = self;
     _unionContentModule.delegate = self;
     
-    _unionModule = [RLUnionModule unionModuleWithModules:@[_unionHeaderModule, _unionContentModule]];
+    RLTableModule *unionHidden = [RLTableModule new];
+    unionHidden.dataSource = self;
+    unionHidden.delegate = self;
+    unionHidden.hidden = YES;
+    
+    _unionModule = [RLUnionModule new];
+    _unionModule.modules = @[_unionHeaderModule, unionHidden, _unionContentModule];
     
     self.modules = @[_tableModule, _gridModule, _unionModule];
 }

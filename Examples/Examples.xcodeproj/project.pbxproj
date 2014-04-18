@@ -506,6 +506,7 @@
 				414A80B61901B3CB0099CD23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		414A80B71901B3CB0099CD23 /* Build configuration list for PBXNativeTarget "ExamplesTests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +515,7 @@
 				414A80B91901B3CB0099CD23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

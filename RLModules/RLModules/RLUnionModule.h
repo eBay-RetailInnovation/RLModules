@@ -10,29 +10,21 @@
 
 @interface RLUnionModule : RLModule
 
-#pragma mark - Initialization
-/** @name Initialization */
-
-/**
- Returns a union module with the specified child modules, in order.
- 
- @param modules The child modules for the union module.
- @returns An allocated and initialized union module.
- */
-+(instancetype)unionModuleWithModules:(NSArray*)modules;
-
-/**
- Initializes a union module with the specified child modules, in order.
- 
- @param modules The child modules for the union module.
- @returns An initialized union module.
- */
--(instancetype)initWithModules:(NSArray*)modules;
-
 #pragma mark - Modules
 /** @name Modules */
 
-/** The child modules of this union module. */
-@property (nonatomic, readonly, strong) NSArray *modules;
+/**
+ The child modules of this union module.
+ 
+ This includes modules with their `[RLModule hidden]` property set to `YES`.
+ */
+@property (nonatomic, strong) NSArray *modules;
+
+/**
+ The currently visible child modules of this union module.
+ 
+ This does not include modules with their `[RLModule hidden]` property set to `YES`.
+ */
+@property (nonatomic, readonly, strong) NSArray *visibleModules;
 
 @end
