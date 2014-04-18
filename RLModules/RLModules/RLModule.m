@@ -49,4 +49,12 @@
     // TODO: implement
 }
 
+-(CGFloat)prepareLayoutAttributes:(NSArray*)layoutAttributes
+                       withOrigin:(CGPoint)origin
+                            width:(CGFloat)width
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return 0.0;
+}
+
 @end

@@ -64,4 +64,22 @@
  */
 -(void)invalidateLayout;
 
+/**
+ Prepares layout attributes for this module.
+ 
+ Subclasses must override this message. The default implementation throws an exception.
+ 
+ The `minimumTopPadding` and `edgeInsets` properties are already taken into account by the layout object. It should not
+ be necessary to access those properties in the implementation of this message.
+ 
+ @param layoutAttributes An array of `UICollectionViewLayoutAttributes` objects.
+ @param origin The leftmost X position and topmost Y position to use for layout.
+ @param width The width that should be used for the module's layout.
+ @returns The maximum Y position for the layout. The `minimumBottomPadding` property and the `bottom` structure member
+ of the `edgeInsets` property should not be added to this value - that is handled automatically by the layout object.
+ */
+-(CGFloat)prepareLayoutAttributes:(NSArray*)layoutAttributes
+                       withOrigin:(CGPoint)origin
+                            width:(CGFloat)width;
+
 @end
