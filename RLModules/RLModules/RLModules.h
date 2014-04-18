@@ -12,3 +12,4 @@
 #import <RLModules/RLModulesCollectionViewLayout.h>
 #import <RLModules/RLModulesViewController.h>
 #import <RLModules/RLTableModule.h>
+#import <RLModules/RLUnionModule.h>
