@@ -14,6 +14,7 @@
 #import <RLModules/RLMasonryModule.h>
 #import <RLModules/RLModule.h>
 #import <RLModules/RLModule+Implementation.h>
+#import <RLModules/RLModuleController.h>
 #import <RLModules/RLModulesCollectionViewLayout.h>
 #import <RLModules/RLModulesViewController.h>
 #import <RLModules/RLTableModule.h>
