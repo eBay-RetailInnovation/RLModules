@@ -10,10 +10,44 @@
 #import "RLModule+Implementation.h"
 #import "RLModulesCollectionViewLayout.h"
 
-NSString *const kRLModuleLayoutInvalidationNotification = @"kRLModuleLayoutInvalidationNotification";
-NSString *const kRLModuleContentInvalidationNotification = @"kRLModuleContentInvalidationNotification";
+@interface RLModule ()
+{
+@private
+    NSHashTable *_moduleObservers;
+}
+
+@end
 
 @implementation RLModule
+
+#pragma mark - Initialization
+-(id)init
+{
+    self = [super init];
+    
+    if (self)
+    {
+        _moduleObservers = [NSHashTable weakObjectsHashTable];
+    }
+    
+    return self;
+}
+
+#pragma mark - Hiding
+-(void)setHidden:(BOOL)hidden
+{
+    if (_hidden != hidden)
+    {
+        _hidden = hidden;
+        
+        [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+            if ([moduleObserver respondsToSelector:@selector(module:hiddenStateChanged:)])
+            {
+                [moduleObserver module:self hiddenStateChanged:_hidden];
+            }
+        }];
+    }
+}
 
 #pragma mark - Background
 -(void)setBackgroundColor:(UIColor *)backgroundColor
@@ -44,7 +78,12 @@ NSString *const kRLModuleContentInvalidationNotification = @"kRLModuleContentInv
 #pragma mark - Layout Implementation
 -(void)invalidateLayout
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kRLModuleLayoutInvalidationNotification object:self];
+    [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+        if ([moduleObserver respondsToSelector:@selector(moduleLayoutInvalidated:)])
+        {
+            [moduleObserver moduleLayoutInvalidated:self];
+        }
+    }];
 }
 
 -(CGFloat)prepareLayoutAttributes:(NSArray*)layoutAttributes
@@ -58,7 +97,12 @@ NSString *const kRLModuleContentInvalidationNotification = @"kRLModuleContentInv
 #pragma mark - Module State
 -(void)invalidateContent
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kRLModuleContentInvalidationNotification object:self];
+    [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+        if ([moduleObserver respondsToSelector:@selector(moduleContentInvalidated:)])
+        {
+            [moduleObserver moduleContentInvalidated:self];
+        }
+    }];
 }
 
 -(NSInteger)numberOfItems
@@ -70,6 +114,25 @@ NSString *const kRLModuleContentInvalidationNotification = @"kRLModuleContentInv
 @end
 
 @implementation RLModule (Implementation)
+
+#pragma mark - Module Observers
+-(void)addModuleObserver:(id<RLModuleObserver>)moduleObserver
+{
+    [_moduleObservers addObject:moduleObserver];
+}
+
+-(void)removeModuleObserver:(id<RLModuleObserver>)moduleObserver
+{
+    [_moduleObservers removeObject:moduleObserver];
+}
+
+-(void)enumerateModuleObservers:(void(^)(id<RLModuleObserver> moduleObserver))block
+{
+    for (id<RLModuleObserver> moduleObserver in _moduleObservers)
+    {
+        block(moduleObserver);
+    }
+}
 
 #pragma mark - Views for Items
 -(UICollectionViewCell*)cellForItemAtIndex:(NSInteger)index

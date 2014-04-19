@@ -9,7 +9,7 @@
 #import "RLComposedModule.h"
 #import "RLModule+Implementation.h"
 
-@interface RLComposedModule ()
+@interface RLComposedModule () <RLModuleObserver>
 
 @property (nonatomic, strong) NSArray *submodules;
 @property (nonatomic, strong) NSArray *visibleSubmodules;
@@ -24,47 +24,19 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - KVO
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"hidden"] && [_submodules containsObject:object])
-    {
-        self.visibleSubmodules = [self visibleModulesInArray:_submodules];
-    }
-    else
-    {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
-
 #pragma mark - Modules
 -(void)setSubmodules:(NSArray *)submodules
 {
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    
     for (RLModule *module in _submodules)
     {
-        [center removeObserver:self name:kRLModuleContentInvalidationNotification object:module];
-        [center removeObserver:self name:kRLModuleLayoutInvalidationNotification object:module];
-        [module removeObserver:self forKeyPath:@"hidden"];
+        [module removeModuleObserver:self];
     }
     
     _submodules = submodules;
     
     for (RLModule *module in _submodules)
     {
-        [module addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
-        
-        [center addObserver:self
-                   selector:@selector(submoduleContentInvalidated:)
-                       name:kRLModuleContentInvalidationNotification
-                     object:module];
-        
-        [center addObserver:self
-                   selector:@selector(submoduleLayoutInvalidated:)
-                       name:kRLModuleLayoutInvalidationNotification
-                     object:module];
-        
+        [module addModuleObserver:self];
     }
     
     self.visibleSubmodules = [self visibleModulesInArray:_submodules];
@@ -96,21 +68,26 @@
     return nil;
 }
 
-#pragma mark - Child Module Invalidation
--(void)submoduleContentInvalidated:(NSNotification*)notification
+#pragma mark - Module Observer
+-(void)moduleContentInvalidated:(RLModule *)module
 {
-    if ([_visibleSubmodules containsObject:notification.object])
+    if ([_visibleSubmodules containsObject:module])
     {
         [self invalidateContent];
     }
 }
 
--(void)submoduleLayoutInvalidated:(NSNotification*)notification
+-(void)moduleLayoutInvalidated:(RLModule *)module
 {
-    if ([_visibleSubmodules containsObject:notification.object])
+    if ([_visibleSubmodules containsObject:module])
     {
         [self invalidateLayout];
     }
+}
+
+-(void)module:(RLModule *)module hiddenStateChanged:(BOOL)hidden
+{
+    self.visibleSubmodules = [self visibleModulesInArray:_submodules];
 }
 
 #pragma mark - Child Modules

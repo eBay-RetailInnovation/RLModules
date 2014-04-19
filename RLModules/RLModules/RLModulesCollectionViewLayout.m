@@ -26,7 +26,7 @@ static NSArray* RLModulesCollectionViewLayoutMapToInteger(NSUInteger integer, RL
     else return @[];
 }
 
-@interface RLModulesCollectionViewLayout ()
+@interface RLModulesCollectionViewLayout () <RLModuleObserver>
 {
 @private
     // layout state
@@ -51,24 +51,21 @@ static NSArray* RLModulesCollectionViewLayoutMapToInteger(NSUInteger integer, RL
 #pragma mark - Modules
 -(void)setModules:(NSArray *)modules
 {
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     for (RLModule *module in _modules)
     {
-        [center removeObserver:self name:kRLModuleLayoutInvalidationNotification object:module];
+        [module removeModuleObserver:self];
     }
     
     _modules = modules;
     
     for (RLModule *module in _modules)
     {
-        [center addObserver:self
-                   selector:@selector(moduleInvalidated:)
-                       name:kRLModuleLayoutInvalidationNotification
-                     object:module];
+        [module addModuleObserver:self];
     }
 }
 
--(void)moduleInvalidated:(NSNotification*)notification
+#pragma mark - Module Observer
+-(void)moduleLayoutInvalidated:(RLModule *)module
 {
     [self invalidateLayout];
 }

@@ -10,7 +10,7 @@
 #import "RLModulesCollectionViewLayout.h"
 #import "RLModulesViewController.h"
 
-@interface RLModulesViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface RLModulesViewController () <RLModuleObserver, UICollectionViewDataSource, UICollectionViewDelegate>
 {
 @private
     RLModulesCollectionViewLayout *_collectionViewLayout;
@@ -45,40 +45,19 @@
     self.view = view;
 }
 
-#pragma mark - KVO
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"hidden"] && [_modules containsObject:object])
-    {
-        self.visibleModules = [self visibleModulesInArray:_modules];
-    }
-    else
-    {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
-
 #pragma mark - Modules
 -(void)setModules:(NSArray *)modules
 {
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    
     for (RLModule *module in _modules)
     {
-        [center removeObserver:self name:kRLModuleContentInvalidationNotification object:module];
-        [module removeObserver:self forKeyPath:@"hidden"];
+        [module removeModuleObserver:self];
     }
     
     _modules = modules;
     
     for (RLModule *module in _modules)
     {
-        [center addObserver:self
-                   selector:@selector(moduleContentInvalidated:)
-                       name:kRLModuleContentInvalidationNotification
-                     object:module];
-        
-        [module addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
+        [module addModuleObserver:self];
     }
     
     self.visibleModules = [self visibleModulesInArray:_modules];
@@ -100,9 +79,15 @@
     [_collectionView reloadData];
 }
 
--(void)moduleContentInvalidated:(NSNotification*)notification
+#pragma mark - Module Observer
+-(void)module:(RLModule *)module hiddenStateChanged:(BOOL)hidden
 {
-    NSUInteger index = [_visibleModules indexOfObject:notification.object];
+    self.visibleModules = [self visibleModulesInArray:_modules];
+}
+
+-(void)moduleContentInvalidated:(RLModule *)module
+{
+    NSUInteger index = [_visibleModules indexOfObject:module];
     
     if (index != NSNotFound)
     {

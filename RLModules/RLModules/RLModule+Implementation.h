@@ -8,8 +8,35 @@
 
 #import "RLModule.h"
 
-FOUNDATION_EXTERN NSString *const kRLModuleLayoutInvalidationNotification;
-FOUNDATION_EXTERN NSString *const kRLModuleContentInvalidationNotification;
+@class RLModule;
+
+@protocol RLModuleObserver <NSObject>
+
+@optional
+
+/**
+ Notifies the receiver that a module's layout is invalid.
+ 
+ @param module The invalidated module.
+ */
+-(void)moduleLayoutInvalidated:(RLModule*)module;
+
+/**
+ Notifies the receiver that a module's content is invalid.
+ 
+ @param module The invalidated module.
+ */
+-(void)moduleContentInvalidated:(RLModule*)module;
+
+/**
+ Notifies the reciever that a module's hidden state has changed.
+ 
+ @param module The module.
+ @param hidden The new hidden state.
+ */
+-(void)module:(RLModule*)module hiddenStateChanged:(BOOL)hidden;
+
+@end
 
 /**
  This category provides the messages needed to implement a concrete module subclass.
@@ -17,6 +44,29 @@ FOUNDATION_EXTERN NSString *const kRLModuleContentInvalidationNotification;
  It is not included in the `RLModules.h` header file, and must be imported explicitly.
  */
 @interface RLModule (Implementation)
+
+#pragma mark - Module Observers
+/** @name Module Observers */
+/**
+ Adds a module observer. Module observers are not retained.
+ 
+ @param moduleObserver The module observer to add.
+ */
+-(void)addModuleObserver:(id<RLModuleObserver>)moduleObserver;
+
+/**
+ Removes a module observer.
+ 
+ @param moduleObserver The module observer to remove.
+ */
+-(void)removeModuleObserver:(id<RLModuleObserver>)moduleObserver;
+
+/**
+ Enumerates the module's observers, passing each to the specified block.
+ 
+ @param block A block to pass each module observer to. This parameter must not be `nil`.
+ */
+-(void)enumerateModuleObservers:(void(^)(id<RLModuleObserver> moduleObserver))block;
 
 #pragma mark - Views for Items
 /** @name Views for Items */
