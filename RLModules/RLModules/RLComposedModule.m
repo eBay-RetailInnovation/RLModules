@@ -54,7 +54,7 @@
 -(void)setVisibleSubmodules:(NSArray *)visibleSubmodules
 {
     _visibleSubmodules = visibleSubmodules;
-    [self invalidateLayout];
+    [self invalidateContent];
 }
 
 -(void)invalidateSubmodules
