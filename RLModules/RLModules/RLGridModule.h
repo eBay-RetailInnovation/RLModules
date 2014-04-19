@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
-#import "RLModule.h"
+#import "RLLayoutModule.h"
 
 /**
  A module which places its views in rows and columns of equal widths and heights.
  */
-@interface RLGridModule : RLModule
+@interface RLGridModule : RLLayoutModule
 
 #pragma mark - Layout Properties
 /** @name Layout Properties */

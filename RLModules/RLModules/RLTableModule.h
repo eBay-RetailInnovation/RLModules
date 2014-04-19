@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
-#import "RLModule.h"
+#import "RLLayoutModule.h"
 
 /**
  A layout module which places views sequentially vertically. Every row has the same height.
  */
-@interface RLTableModule : RLModule
+@interface RLTableModule : RLLayoutModule
 
 #pragma mark - Row Height
 /** @name Row Height */
