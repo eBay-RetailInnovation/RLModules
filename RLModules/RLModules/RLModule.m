@@ -13,7 +13,12 @@
 @interface RLModule ()
 {
 @private
+    // observers
     NSHashTable *_moduleObservers;
+    
+    // state
+    BOOL _numberOfItemsValid;
+    NSInteger _calculatedNumberOfItems;
 }
 
 @end
@@ -97,6 +102,8 @@
 #pragma mark - Module State
 -(void)invalidateContent
 {
+    _numberOfItemsValid = NO;
+    
     [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
         if ([moduleObserver respondsToSelector:@selector(moduleContentInvalidated:)])
         {
@@ -107,8 +114,13 @@
 
 -(NSInteger)numberOfItems
 {
-    [self doesNotRecognizeSelector:_cmd];
-    return 0;
+    if (!_numberOfItemsValid)
+    {
+        _calculatedNumberOfItems = [self calculateNumberOfItems];
+        _numberOfItemsValid = YES;
+    }
+    
+    return _calculatedNumberOfItems;
 }
 
 @end
@@ -173,6 +185,13 @@
 
 -(void)didUnhighlightItemAtIndex:(NSInteger)index
 {
+}
+
+#pragma mark - Module State
+-(NSInteger)calculateNumberOfItems
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return 0;
 }
 
 @end

@@ -167,4 +167,15 @@
  */
 -(void)didUnhighlightItemAtIndex:(NSInteger)index;
 
+#pragma mark - Module State
+/** @name Module State */
+
+/**
+ Subclasses must override this method to implement the `-[RLModule numberOfItems]` method. That method will cache the
+ result until the content is invalidated.
+ 
+ The default implementation throws an exception.
+ */
+-(NSInteger)calculateNumberOfItems;
+
 @end
