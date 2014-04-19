@@ -128,7 +128,7 @@
         UIEdgeInsets edgeInsets = module.edgeInsets;
         origin.y += edgeInsets.top;
         origin.y = [module prepareLayoutAttributes:[layoutAttributes subarrayWithRange:NSMakeRange(offset, itemCount)]
-                                        withOrigin:CGPointMake(edgeInsets.left, origin.y)
+                                        withOrigin:CGPointMake(origin.x + edgeInsets.left, origin.y)
                                              width:width - edgeInsets.left - edgeInsets.right];
         origin.y += edgeInsets.bottom;
         
