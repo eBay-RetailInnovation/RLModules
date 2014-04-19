@@ -26,6 +26,10 @@
 
 @end
 
+/**
+ A masonry grid module. Items are arranged in columns, and may vary in height. Items are placed in order, with each
+ sequential item being placed into the shortest column.
+ */
 @interface RLMasonryModule : RLLayoutModule
 
 #pragma mark - Delegate
