@@ -9,7 +9,7 @@
 #import "RLModule+Private.h"
 #import "RLUnionModule.h"
 
-@interface RLUnionModule () <RLModuleDataSource, RLModuleDelegate>
+@interface RLUnionModule () <RLLayoutModuleDataSource, RLLayoutModuleDelegate>
 
 @property (nonatomic, strong) NSArray *childModules;
 

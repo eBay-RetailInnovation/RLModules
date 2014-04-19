@@ -8,7 +8,7 @@
 
 #import "EXModulesViewController.h"
 
-@interface EXModulesViewController () <RLModuleDataSource, RLModuleDelegate>
+@interface EXModulesViewController () <RLLayoutModuleDataSource, RLLayoutModuleDelegate>
 {
 @private
     // basic module
