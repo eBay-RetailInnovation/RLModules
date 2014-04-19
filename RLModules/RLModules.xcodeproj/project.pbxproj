@@ -26,6 +26,7 @@
 		43F0974B1902227C00DF0083 /* RLComposedArrayModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F0974A1902227C00DF0083 /* RLComposedArrayModule.m */; };
 		43F097511902238600DF0083 /* RLWrapperModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097501902238600DF0083 /* RLWrapperModule.m */; };
 		43F097541902B57B00DF0083 /* RLDynamicTableModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097531902B57B00DF0083 /* RLDynamicTableModule.m */; };
+		43F097581902BA8600DF0083 /* RLModuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097571902BA8600DF0083 /* RLModuleController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		43F097501902238600DF0083 /* RLWrapperModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLWrapperModule.m; sourceTree = "<group>"; };
 		43F097521902B57B00DF0083 /* RLDynamicTableModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLDynamicTableModule.h; sourceTree = "<group>"; };
 		43F097531902B57B00DF0083 /* RLDynamicTableModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLDynamicTableModule.m; sourceTree = "<group>"; };
+		43F097561902BA8600DF0083 /* RLModuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLModuleController.h; sourceTree = "<group>"; };
+		43F097571902BA8600DF0083 /* RLModuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLModuleController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,7 @@
 				414A804B1901781F0099CD23 /* RLModules.h */,
 				414A807A190188D10099CD23 /* Layout */,
 				414A806C190178420099CD23 /* Modules */,
+				43F097551902BA6B00DF0083 /* Module Controller */,
 				414A8076190187D70099CD23 /* View Controller */,
 				414A80491901781F0099CD23 /* Supporting Files */,
 			);
@@ -237,6 +241,15 @@
 			name = Composed;
 			sourceTree = "<group>";
 		};
+		43F097551902BA6B00DF0083 /* Module Controller */ = {
+			isa = PBXGroup;
+			children = (
+				43F097561902BA8600DF0083 /* RLModuleController.h */,
+				43F097571902BA8600DF0083 /* RLModuleController.m */,
+			);
+			name = "Module Controller";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -321,6 +334,7 @@
 				414A80721901806F0099CD23 /* RLTableModule.m in Sources */,
 				43F0974B1902227C00DF0083 /* RLComposedArrayModule.m in Sources */,
 				43F09745190205A300DF0083 /* RLMasonryModule.m in Sources */,
+				43F097581902BA8600DF0083 /* RLModuleController.m in Sources */,
 				43F097481902205800DF0083 /* RLComposedModule.m in Sources */,
 				43F097421901FFA000DF0083 /* RLLayoutModule.m in Sources */,
 				43F097541902B57B00DF0083 /* RLDynamicTableModule.m in Sources */,

@@ -109,6 +109,11 @@
     }
 }
 
+-(void)registerCellClassesForModuleControllerClass:(Class)moduleControllerClass
+{
+    [self registerCellClassesForReuse:[moduleControllerClass requiredCellClasses]];
+}
+
 -(id)dequeueCellOfClass:(Class)klass atIndexPath:(NSIndexPath*)indexPath
 {
     return [_collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(klass) forIndexPath:indexPath];

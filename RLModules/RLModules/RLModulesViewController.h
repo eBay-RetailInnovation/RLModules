@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RLModuleController.h"
 
 @interface RLModulesViewController : UIViewController
 
@@ -47,6 +47,13 @@
  @param classes An array of cell classes to register.
  */
 -(void)registerCellClassesForReuse:(NSArray*)classes;
+
+/**
+ Registers the cell classes required by a module controller class.
+ 
+ The module controller must implement `+[RLModuleController requiredCellClasses]`.
+ */
+-(void)registerCellClassesForModuleControllerClass:(Class)moduleControllerClass;
 
 /**
  Dequeues a cell of the specified class at the specified index path.
