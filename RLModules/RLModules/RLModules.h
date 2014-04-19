@@ -8,7 +8,7 @@
 
 #import <RLModules/RLModule.h>
 #import <RLModules/RLGridModule.h>
-#import <RLModules/RLModule+Private.h>
+#import <RLModules/RLModule+Implementation.h>
 #import <RLModules/RLModulesCollectionViewLayout.h>
 #import <RLModules/RLModulesViewController.h>
 #import <RLModules/RLTableModule.h>

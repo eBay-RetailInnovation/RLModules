@@ -7,7 +7,7 @@
 //
 
 #import "RLModule.h"
-#import "RLModule+Private.h"
+#import "RLModule+Implementation.h"
 #import "RLModulesCollectionViewLayout.h"
 
 NSString *const kRLModuleLayoutInvalidationNotification = @"kRLModuleLayoutInvalidationNotification";
