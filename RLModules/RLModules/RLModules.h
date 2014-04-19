@@ -8,6 +8,7 @@
 
 #import <RLModules/RLComposedArrayModule.h>
 #import <RLModules/RLComposedModule.h>
+#import <RLModules/RLDynamicTableModule.h>
 #import <RLModules/RLGridModule.h>
 #import <RLModules/RLLayoutModule.h>
 #import <RLModules/RLMasonryModule.h>

@@ -8,13 +8,14 @@
 
 #import "EXModulesViewController.h"
 
-@interface EXModulesViewController () <RLLayoutModuleDataSource, RLMasonryModuleDelegate>
+@interface EXModulesViewController () <RLDynamicTableModuleDelegate, RLLayoutModuleDataSource, RLMasonryModuleDelegate>
 {
 @private
     // basic modules
     RLTableModule *_tableModule;
     RLGridModule *_gridModule;
     RLMasonryModule *_masonryModule;
+    RLDynamicTableModule *_dynamicTableModule;
     
     // header module
     RLComposedArrayModule *_composedModule;
@@ -52,6 +53,11 @@
     _masonryModule.delegate = self;
     _masonryModule.edgeInsets = edgeInsets;
     
+    _dynamicTableModule = [RLDynamicTableModule new];
+    _dynamicTableModule.dataSource = self;
+    _dynamicTableModule.delegate = self;
+    _dynamicTableModule.edgeInsets = edgeInsets;
+    
     // header module
     _composedHeaderModule = [RLTableModule new];
     _composedHeaderModule.dataSource = self;
@@ -70,7 +76,7 @@
     _composedModule = [RLComposedArrayModule new];
     _composedModule.modules = @[_composedHeaderModule, composedHidden, _composedContentModule];
     
-    self.modules = @[_tableModule, _gridModule, _masonryModule, _composedModule];
+    self.modules = @[_tableModule, _gridModule, _masonryModule, _dynamicTableModule, _composedModule];
 }
 
 #pragma mark - Module Data Source
@@ -93,6 +99,17 @@
 -(CGFloat)masonryModule:(RLMasonryModule *)masonryModule heightForItemAtIndex:(NSInteger)index withWidth:(CGFloat)width
 {
     return 10 + 10 * (index % 3);
+}
+
+#pragma mark - Dynamic Table Module Delegate
+-(CGFloat)dynamicTableModule:(RLDynamicTableModule *)dynamicTableModule heightForItemAtIndex:(NSInteger)index withWidth:(CGFloat)width
+{
+    return (index + 1) * 10;
+}
+
+-(CGFloat)dynamicTableModule:(RLDynamicTableModule *)dynamicTableModule paddingAfterItemAtIndex:(NSInteger)index withWidth:(CGFloat)width
+{
+    return index + 1;
 }
 
 @end

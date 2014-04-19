@@ -25,6 +25,7 @@
 		43F097481902205800DF0083 /* RLComposedModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097471902205800DF0083 /* RLComposedModule.m */; };
 		43F0974B1902227C00DF0083 /* RLComposedArrayModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F0974A1902227C00DF0083 /* RLComposedArrayModule.m */; };
 		43F097511902238600DF0083 /* RLWrapperModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097501902238600DF0083 /* RLWrapperModule.m */; };
+		43F097541902B57B00DF0083 /* RLDynamicTableModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097531902B57B00DF0083 /* RLDynamicTableModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		43F0974A1902227C00DF0083 /* RLComposedArrayModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLComposedArrayModule.m; sourceTree = "<group>"; };
 		43F0974F1902238600DF0083 /* RLWrapperModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLWrapperModule.h; sourceTree = "<group>"; };
 		43F097501902238600DF0083 /* RLWrapperModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLWrapperModule.m; sourceTree = "<group>"; };
+		43F097521902B57B00DF0083 /* RLDynamicTableModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLDynamicTableModule.h; sourceTree = "<group>"; };
+		43F097531902B57B00DF0083 /* RLDynamicTableModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLDynamicTableModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 			children = (
 				43F097401901FFA000DF0083 /* RLLayoutModule.h */,
 				43F097411901FFA000DF0083 /* RLLayoutModule.m */,
+				43F097521902B57B00DF0083 /* RLDynamicTableModule.h */,
+				43F097531902B57B00DF0083 /* RLDynamicTableModule.m */,
 				414A80701901806F0099CD23 /* RLTableModule.h */,
 				414A80711901806F0099CD23 /* RLTableModule.m */,
 				414A80731901816F0099CD23 /* RLGridModule.h */,
@@ -318,6 +323,7 @@
 				43F09745190205A300DF0083 /* RLMasonryModule.m in Sources */,
 				43F097481902205800DF0083 /* RLComposedModule.m in Sources */,
 				43F097421901FFA000DF0083 /* RLLayoutModule.m in Sources */,
+				43F097541902B57B00DF0083 /* RLDynamicTableModule.m in Sources */,
 				414A806F190178540099CD23 /* RLModule.m in Sources */,
 				414A8079190187EB0099CD23 /* RLModulesViewController.m in Sources */,
 				414A807D190188E50099CD23 /* RLModulesCollectionViewLayout.m in Sources */,
