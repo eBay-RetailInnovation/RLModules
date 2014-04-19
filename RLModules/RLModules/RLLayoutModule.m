@@ -12,7 +12,7 @@
 @implementation RLLayoutModule
 
 #pragma mark - Module State
--(NSInteger)numberOfItems
+-(NSInteger)calculateNumberOfItems
 {
     return [_dataSource numberOfItemsInLayoutModule:self];
 }

@@ -144,7 +144,7 @@
 }
 
 #pragma mark - Module State
--(NSInteger)numberOfItems
+-(NSInteger)calculateNumberOfItems
 {
     NSInteger sum = 0;
     
