@@ -9,27 +9,13 @@
 #import "RLModule+Implementation.h"
 #import "RLUnionModule.h"
 
-@interface RLUnionModule () <RLLayoutModuleDataSource, RLLayoutModuleDelegate>
+@interface RLUnionModule ()
 
 @property (nonatomic, strong) NSArray *childModules;
 
 @end
 
 @implementation RLUnionModule
-
-#pragma mark - Initialization
--(id)init
-{
-    self = [super init];
-    
-    if (self)
-    {
-        self.dataSource = self;
-        self.delegate = self;
-    }
-    
-    return self;
-}
 
 #pragma mark - Deallocation
 -(void)dealloc
@@ -169,7 +155,7 @@
 }
 
 #pragma mark - Module Data Source
--(NSInteger)numberOfItemsInModule:(RLModule *)module
+-(NSInteger)numberOfItems
 {
     NSInteger sum = 0;
     
@@ -181,18 +167,17 @@
     return sum;
 }
 
--(UICollectionViewCell*)module:(RLModule *)module
-            cellForItemAtIndex:(NSInteger)index
-              inCollectionView:(UICollectionView *)collectionView
-                 withIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Views for Items
+-(UICollectionViewCell*)cellForItemAtIndex:(NSInteger)index
+                          inCollectionView:(UICollectionView *)collectionView
+                             withIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:indexPath.item logicalIndex:&logicalIndex];
     
-    return [childModule.dataSource module:childModule
-                       cellForItemAtIndex:logicalIndex
-                         inCollectionView:collectionView
-                            withIndexPath:indexPath];
+    return [childModule cellForItemAtIndex:logicalIndex
+                          inCollectionView:collectionView
+                             withIndexPath:indexPath];
 }
 
 #pragma mark - Module Delegate
@@ -200,89 +185,49 @@
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    
-    if ([childModule.delegate respondsToSelector:@selector(module:shouldSelectItemAtIndex:)])
-    {
-        return [childModule.delegate module:childModule shouldSelectItemAtIndex:logicalIndex];
-    }
-    else
-    {
-        return YES;
-    }
+    return [childModule shouldSelectItemAtIndex:logicalIndex];
 }
 
 -(void)module:(RLModule *)module didSelectItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    
-    if ([childModule.delegate respondsToSelector:@selector(module:didSelectItemAtIndex:)])
-    {
-        [childModule.delegate module:childModule didSelectItemAtIndex:logicalIndex];
-    }
+    [childModule didSelectItemAtIndex:logicalIndex];
 }
 
 -(BOOL)module:(RLModule *)module shouldDeselectItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    
-    if ([childModule.delegate respondsToSelector:@selector(module:shouldDeselectItemAtIndex:)])
-    {
-        return [childModule.delegate module:childModule shouldDeselectItemAtIndex:logicalIndex];
-    }
-    else
-    {
-        return YES;
-    }
+    return [childModule shouldDeselectItemAtIndex:logicalIndex];
 }
 
 -(void)module:(RLModule *)module didDeselectItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    
-    if ([childModule.delegate respondsToSelector:@selector(module:didDeselectItemAtIndex:)])
-    {
-        [childModule.delegate module:childModule didDeselectItemAtIndex:logicalIndex];
-    }
+    [childModule didDeselectItemAtIndex:logicalIndex];
 }
 
 -(BOOL)module:(RLModule *)module shouldHighlightItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    
-    if ([childModule.delegate respondsToSelector:@selector(module:shouldHighlightItemAtIndex:)])
-    {
-        return [childModule.delegate module:childModule shouldHighlightItemAtIndex:logicalIndex];
-    }
-    else
-    {
-        return YES;
-    }
+    return [childModule shouldHighlightItemAtIndex:logicalIndex];
 }
 
 -(void)module:(RLModule *)module didHighlightItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    
-    if ([childModule.delegate respondsToSelector:@selector(module:didHighlightItemAtIndex:)])
-    {
-        [childModule.delegate module:childModule didHighlightItemAtIndex:logicalIndex];
-    }
+    [childModule didHighlightItemAtIndex:logicalIndex];
 }
 
 -(void)module:(RLModule *)module didUnhighlightItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    
-    if ([childModule.delegate respondsToSelector:@selector(module:didUnhighlightItemAtIndex:)])
-    {
-        [childModule.delegate module:childModule didUnhighlightItemAtIndex:logicalIndex];
-    }
+    [childModule didHighlightItemAtIndex:logicalIndex];
 }
 
 @end

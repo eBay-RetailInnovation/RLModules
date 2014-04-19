@@ -11,6 +11,12 @@
 
 @implementation RLLayoutModule
 
+#pragma mark - Module State
+-(NSInteger)numberOfItems
+{
+    return [_dataSource numberOfItemsInModule:self];
+}
+
 #pragma mark - Views for Items
 -(UICollectionViewCell*)cellForItemAtIndex:(NSInteger)index
                           inCollectionView:(UICollectionView*)collectionView
