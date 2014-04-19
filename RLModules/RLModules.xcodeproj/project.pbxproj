@@ -20,9 +20,10 @@
 		414A80751901816F0099CD23 /* RLGridModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80741901816F0099CD23 /* RLGridModule.m */; };
 		414A8079190187EB0099CD23 /* RLModulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A8078190187EB0099CD23 /* RLModulesViewController.m */; };
 		414A807D190188E50099CD23 /* RLModulesCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */; };
-		414A80CC1901BB6E0099CD23 /* RLUnionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80CB1901BB6E0099CD23 /* RLUnionModule.m */; };
 		43F097421901FFA000DF0083 /* RLLayoutModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097411901FFA000DF0083 /* RLLayoutModule.m */; };
 		43F09745190205A300DF0083 /* RLMasonryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F09744190205A300DF0083 /* RLMasonryModule.m */; };
+		43F097481902205800DF0083 /* RLComposedModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097471902205800DF0083 /* RLComposedModule.m */; };
+		43F0974B1902227C00DF0083 /* RLComposedArrayModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F0974A1902227C00DF0083 /* RLComposedArrayModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,12 +71,14 @@
 		414A807B190188E50099CD23 /* RLModulesCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLModulesCollectionViewLayout.h; sourceTree = "<group>"; };
 		414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLModulesCollectionViewLayout.m; sourceTree = "<group>"; };
 		414A807E190198F10099CD23 /* RLModule+Implementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLModule+Implementation.h"; sourceTree = "<group>"; };
-		414A80CA1901BB6E0099CD23 /* RLUnionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLUnionModule.h; sourceTree = "<group>"; };
-		414A80CB1901BB6E0099CD23 /* RLUnionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLUnionModule.m; sourceTree = "<group>"; };
 		43F097401901FFA000DF0083 /* RLLayoutModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLLayoutModule.h; sourceTree = "<group>"; };
 		43F097411901FFA000DF0083 /* RLLayoutModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLLayoutModule.m; sourceTree = "<group>"; };
 		43F09743190205A300DF0083 /* RLMasonryModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMasonryModule.h; sourceTree = "<group>"; };
 		43F09744190205A300DF0083 /* RLMasonryModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMasonryModule.m; sourceTree = "<group>"; };
+		43F097461902205800DF0083 /* RLComposedModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLComposedModule.h; sourceTree = "<group>"; };
+		43F097471902205800DF0083 /* RLComposedModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLComposedModule.m; sourceTree = "<group>"; };
+		43F097491902227C00DF0083 /* RLComposedArrayModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLComposedArrayModule.h; sourceTree = "<group>"; };
+		43F0974A1902227C00DF0083 /* RLComposedArrayModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLComposedArrayModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,8 +177,8 @@
 				414A806D190178540099CD23 /* RLModule.h */,
 				414A807E190198F10099CD23 /* RLModule+Implementation.h */,
 				414A806E190178540099CD23 /* RLModule.m */,
+				43F0973A1901E52D00DF0083 /* Composed */,
 				43F097391901E52200DF0083 /* Layout */,
-				43F0973A1901E52D00DF0083 /* Meta */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -213,21 +216,15 @@
 			name = Layout;
 			sourceTree = "<group>";
 		};
-		43F0973A1901E52D00DF0083 /* Meta */ = {
+		43F0973A1901E52D00DF0083 /* Composed */ = {
 			isa = PBXGroup;
 			children = (
-				43F0973B1901E53500DF0083 /* Union */,
+				43F097461902205800DF0083 /* RLComposedModule.h */,
+				43F097471902205800DF0083 /* RLComposedModule.m */,
+				43F097491902227C00DF0083 /* RLComposedArrayModule.h */,
+				43F0974A1902227C00DF0083 /* RLComposedArrayModule.m */,
 			);
-			name = Meta;
-			sourceTree = "<group>";
-		};
-		43F0973B1901E53500DF0083 /* Union */ = {
-			isa = PBXGroup;
-			children = (
-				414A80CA1901BB6E0099CD23 /* RLUnionModule.h */,
-				414A80CB1901BB6E0099CD23 /* RLUnionModule.m */,
-			);
-			name = Union;
+			name = Composed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,11 +309,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				414A80721901806F0099CD23 /* RLTableModule.m in Sources */,
+				43F0974B1902227C00DF0083 /* RLComposedArrayModule.m in Sources */,
 				43F09745190205A300DF0083 /* RLMasonryModule.m in Sources */,
+				43F097481902205800DF0083 /* RLComposedModule.m in Sources */,
 				43F097421901FFA000DF0083 /* RLLayoutModule.m in Sources */,
 				414A806F190178540099CD23 /* RLModule.m in Sources */,
 				414A8079190187EB0099CD23 /* RLModulesViewController.m in Sources */,
-				414A80CC1901BB6E0099CD23 /* RLUnionModule.m in Sources */,
 				414A807D190188E50099CD23 /* RLModulesCollectionViewLayout.m in Sources */,
 				414A80751901816F0099CD23 /* RLGridModule.m in Sources */,
 			);

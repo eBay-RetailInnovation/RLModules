@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
+#import <RLModules/RLComposedArrayModule.h>
+#import <RLModules/RLComposedModule.h>
 #import <RLModules/RLGridModule.h>
 #import <RLModules/RLLayoutModule.h>
 #import <RLModules/RLMasonryModule.h>
@@ -14,4 +16,3 @@
 #import <RLModules/RLModulesCollectionViewLayout.h>
 #import <RLModules/RLModulesViewController.h>
 #import <RLModules/RLTableModule.h>
-#import <RLModules/RLUnionModule.h>

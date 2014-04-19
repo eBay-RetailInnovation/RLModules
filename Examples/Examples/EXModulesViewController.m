@@ -17,9 +17,9 @@
     RLMasonryModule *_masonryModule;
     
     // header module
-    RLUnionModule *_unionModule;
-    RLTableModule *_unionHeaderModule;
-    RLGridModule *_unionContentModule;
+    RLComposedArrayModule *_composedModule;
+    RLTableModule *_composedHeaderModule;
+    RLGridModule *_composedContentModule;
 }
 
 @end
@@ -53,24 +53,24 @@
     _masonryModule.edgeInsets = edgeInsets;
     
     // header module
-    _unionHeaderModule = [RLTableModule new];
-    _unionHeaderModule.dataSource = self;
-    _unionHeaderModule.delegate = self;
-    _unionHeaderModule.rowHeight = 22;
+    _composedHeaderModule = [RLTableModule new];
+    _composedHeaderModule.dataSource = self;
+    _composedHeaderModule.delegate = self;
+    _composedHeaderModule.rowHeight = 22;
     
-    _unionContentModule = [RLGridModule new];
-    _unionContentModule.dataSource = self;
-    _unionContentModule.delegate = self;
+    _composedContentModule = [RLGridModule new];
+    _composedContentModule.dataSource = self;
+    _composedContentModule.delegate = self;
     
-    RLTableModule *unionHidden = [RLTableModule new];
-    unionHidden.dataSource = self;
-    unionHidden.delegate = self;
-    unionHidden.hidden = YES;
+    RLTableModule *composedHidden = [RLTableModule new];
+    composedHidden.dataSource = self;
+    composedHidden.delegate = self;
+    composedHidden.hidden = YES;
     
-    _unionModule = [RLUnionModule new];
-    _unionModule.modules = @[_unionHeaderModule, unionHidden, _unionContentModule];
+    _composedModule = [RLComposedArrayModule new];
+    _composedModule.modules = @[_composedHeaderModule, composedHidden, _composedContentModule];
     
-    self.modules = @[_tableModule, _gridModule, _masonryModule, _unionModule];
+    self.modules = @[_tableModule, _gridModule, _masonryModule, _composedModule];
 }
 
 #pragma mark - Module Data Source

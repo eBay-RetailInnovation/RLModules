@@ -1,21 +1,22 @@
 //
-//  RLUnionModule.m
+//  RLComposedModule.m
 //  RLModules
 //
 //  Created by Nate Stedman on 4/18/14.
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
+#import "RLComposedModule.h"
 #import "RLModule+Implementation.h"
-#import "RLUnionModule.h"
 
-@interface RLUnionModule ()
+@interface RLComposedModule ()
 
-@property (nonatomic, strong) NSArray *childModules;
+@property (nonatomic, strong) NSArray *submodules;
+@property (nonatomic, strong) NSArray *visibleSubmodules;
 
 @end
 
-@implementation RLUnionModule
+@implementation RLComposedModule
 
 #pragma mark - Deallocation
 -(void)dealloc
@@ -26,9 +27,9 @@
 #pragma mark - KVO
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"hidden"] && [_modules containsObject:object])
+    if ([keyPath isEqualToString:@"hidden"] && [_submodules containsObject:object])
     {
-        self.visibleModules = [self visibleModulesInArray:_modules];
+        self.visibleSubmodules = [self visibleModulesInArray:_submodules];
     }
     else
     {
@@ -37,36 +38,36 @@
 }
 
 #pragma mark - Modules
--(void)setModules:(NSArray *)modules
+-(void)setSubmodules:(NSArray *)submodules
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
-    for (RLModule *module in _modules)
+    for (RLModule *module in _submodules)
     {
         [center removeObserver:self name:kRLModuleContentInvalidationNotification object:module];
         [center removeObserver:self name:kRLModuleLayoutInvalidationNotification object:module];
         [module removeObserver:self forKeyPath:@"hidden"];
     }
     
-    _modules = modules;
+    _submodules = submodules;
     
-    for (RLModule *module in _modules)
+    for (RLModule *module in _submodules)
     {
         [module addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
         
         [center addObserver:self
-                   selector:@selector(childModuleContentInvalidated:)
+                   selector:@selector(submoduleContentInvalidated:)
                        name:kRLModuleContentInvalidationNotification
                      object:module];
         
         [center addObserver:self
-                   selector:@selector(childModuleLayoutInvalidated:)
+                   selector:@selector(submoduleLayoutInvalidated:)
                        name:kRLModuleLayoutInvalidationNotification
                      object:module];
-
+        
     }
     
-    self.visibleModules = [self visibleModulesInArray:_modules];
+    self.visibleSubmodules = [self visibleModulesInArray:_submodules];
 }
 
 -(NSArray*)visibleModulesInArray:(NSArray*)array
@@ -78,41 +79,52 @@
     return [array objectsAtIndexes:set];
 }
 
--(void)setVisibleModules:(NSArray *)visibleModules
+-(void)setVisibleSubmodules:(NSArray *)visibleSubmodules
 {
-    _visibleModules = visibleModules;
+    _visibleSubmodules = visibleSubmodules;
     [self invalidateLayout];
 }
 
-#pragma mark - Child Module Invalidation
--(void)childModuleContentInvalidated:(NSNotification*)notification
+-(void)invalidateSubmodules
 {
-    if ([_visibleModules containsObject:notification.object])
+    self.submodules = [self currentSubmodules];
+}
+
+-(NSArray*)currentSubmodules
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+#pragma mark - Child Module Invalidation
+-(void)submoduleContentInvalidated:(NSNotification*)notification
+{
+    if ([_visibleSubmodules containsObject:notification.object])
     {
         [self invalidateContent];
     }
 }
 
--(void)childModuleLayoutInvalidated:(NSNotification*)notification
+-(void)submoduleLayoutInvalidated:(NSNotification*)notification
 {
-    if ([_visibleModules containsObject:notification.object])
+    if ([_visibleSubmodules containsObject:notification.object])
     {
         [self invalidateLayout];
     }
 }
 
 #pragma mark - Child Modules
--(RLModule*)childModuleAtIndex:(NSInteger)index logicalIndex:(NSInteger*)logicalIndex
+-(RLModule*)submoduleAtIndex:(NSInteger)index submoduleItemIndex:(NSInteger*)submoduleItemIndex
 {
     NSInteger offset = 0;
     
-    for (RLModule *module in _visibleModules)
+    for (RLModule *module in _visibleSubmodules)
     {
         NSInteger numberOfItems = module.numberOfItems;
         
         if (offset + numberOfItems > index)
         {
-            *logicalIndex = index - offset;
+            *submoduleItemIndex = index - offset;
             return module;
         }
         else
@@ -127,12 +139,12 @@
 #pragma mark - Layout
 -(CGFloat)prepareLayoutAttributes:(NSArray *)layoutAttributes withOrigin:(CGPoint)origin width:(CGFloat)width
 {
-    NSUInteger count = _visibleModules.count;
+    NSUInteger count = _visibleSubmodules.count;
     NSUInteger offset = 0;
     
     for (NSUInteger i = 0; i < count; i++)
     {
-        RLModule *module = _visibleModules[i];
+        RLModule *module = _visibleSubmodules[i];
         NSUInteger itemCount = module.numberOfItems;
         
         // layout
@@ -144,7 +156,7 @@
         origin.y += edgeInsets.bottom;
         
         // add bottom padding
-        RLModule *nextModule = i + 1 < count ? _visibleModules[i + 1] : nil;
+        RLModule *nextModule = i + 1 < count ? _visibleSubmodules[i + 1] : nil;
         origin.y += MAX(module.minimumBottomPadding, nextModule.minimumTopPadding);
         
         // offset
@@ -159,9 +171,9 @@
 {
     NSInteger sum = 0;
     
-    for (RLModule *childModule in _visibleModules)
+    for (RLModule *submodule in _visibleSubmodules)
     {
-        sum += childModule.numberOfItems;
+        sum += submodule.numberOfItems;
     }
     
     return sum;
@@ -172,62 +184,63 @@
                           inCollectionView:(UICollectionView *)collectionView
                              withIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger logicalIndex = 0;
-    RLModule *childModule = [self childModuleAtIndex:indexPath.item logicalIndex:&logicalIndex];
+    NSInteger submoduleItemIndex = 0;
+    RLModule *submodule = [self submoduleAtIndex:indexPath.item submoduleItemIndex:&submoduleItemIndex];
     
-    return [childModule cellForItemAtIndex:logicalIndex
+    return [submodule cellForItemAtIndex:submoduleItemIndex
                           inCollectionView:collectionView
                              withIndexPath:indexPath];
 }
 
-#pragma mark - Module Delegate
+#pragma mark - Selected Items
 -(BOOL)shouldSelectItemAtIndex:(NSInteger)index
 {
-    NSInteger logicalIndex = 0;
-    RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    return [childModule shouldSelectItemAtIndex:logicalIndex];
+    NSInteger submoduleItemIndex = 0;
+    RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
+    return [submodule shouldSelectItemAtIndex:submoduleItemIndex];
 }
 
 -(void)didSelectItemAtIndex:(NSInteger)index
 {
-    NSInteger logicalIndex = 0;
-    RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    [childModule didSelectItemAtIndex:logicalIndex];
+    NSInteger submoduleItemIndex = 0;
+    RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
+    [submodule didSelectItemAtIndex:submoduleItemIndex];
 }
 
 -(BOOL)shouldDeselectItemAtIndex:(NSInteger)index
 {
-    NSInteger logicalIndex = 0;
-    RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    return [childModule shouldDeselectItemAtIndex:logicalIndex];
+    NSInteger submoduleItemIndex = 0;
+    RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
+    return [submodule shouldDeselectItemAtIndex:submoduleItemIndex];
 }
 
 -(void)didDeselectItemAtIndex:(NSInteger)index
 {
-    NSInteger logicalIndex = 0;
-    RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    [childModule didDeselectItemAtIndex:logicalIndex];
+    NSInteger submoduleItemIndex = 0;
+    RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
+    [submodule didDeselectItemAtIndex:submoduleItemIndex];
 }
 
+#pragma mark - Highlighted Items
 -(BOOL)shouldHighlightItemAtIndex:(NSInteger)index
 {
-    NSInteger logicalIndex = 0;
-    RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    return [childModule shouldHighlightItemAtIndex:logicalIndex];
+    NSInteger submoduleItemIndex = 0;
+    RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
+    return [submodule shouldHighlightItemAtIndex:submoduleItemIndex];
 }
 
 -(void)didHighlightItemAtIndex:(NSInteger)index
 {
-    NSInteger logicalIndex = 0;
-    RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    [childModule didHighlightItemAtIndex:logicalIndex];
+    NSInteger submoduleItemIndex = 0;
+    RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
+    [submodule didHighlightItemAtIndex:submoduleItemIndex];
 }
 
 -(void)didUnhighlightItemAtIndex:(NSInteger)index
 {
-    NSInteger logicalIndex = 0;
-    RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
-    [childModule didHighlightItemAtIndex:logicalIndex];
+    NSInteger submoduleItemIndex = 0;
+    RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
+    [submodule didHighlightItemAtIndex:submoduleItemIndex];
 }
 
 @end
