@@ -24,6 +24,7 @@
 		43F09745190205A300DF0083 /* RLMasonryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F09744190205A300DF0083 /* RLMasonryModule.m */; };
 		43F097481902205800DF0083 /* RLComposedModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097471902205800DF0083 /* RLComposedModule.m */; };
 		43F0974B1902227C00DF0083 /* RLComposedArrayModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F0974A1902227C00DF0083 /* RLComposedArrayModule.m */; };
+		43F097511902238600DF0083 /* RLWrapperModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097501902238600DF0083 /* RLWrapperModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		43F097471902205800DF0083 /* RLComposedModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLComposedModule.m; sourceTree = "<group>"; };
 		43F097491902227C00DF0083 /* RLComposedArrayModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLComposedArrayModule.h; sourceTree = "<group>"; };
 		43F0974A1902227C00DF0083 /* RLComposedArrayModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLComposedArrayModule.m; sourceTree = "<group>"; };
+		43F0974F1902238600DF0083 /* RLWrapperModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLWrapperModule.h; sourceTree = "<group>"; };
+		43F097501902238600DF0083 /* RLWrapperModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLWrapperModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +226,8 @@
 				43F097471902205800DF0083 /* RLComposedModule.m */,
 				43F097491902227C00DF0083 /* RLComposedArrayModule.h */,
 				43F0974A1902227C00DF0083 /* RLComposedArrayModule.m */,
+				43F0974F1902238600DF0083 /* RLWrapperModule.h */,
+				43F097501902238600DF0083 /* RLWrapperModule.m */,
 			);
 			name = Composed;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 				414A8079190187EB0099CD23 /* RLModulesViewController.m in Sources */,
 				414A807D190188E50099CD23 /* RLModulesCollectionViewLayout.m in Sources */,
 				414A80751901816F0099CD23 /* RLGridModule.m in Sources */,
+				43F097511902238600DF0083 /* RLWrapperModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
