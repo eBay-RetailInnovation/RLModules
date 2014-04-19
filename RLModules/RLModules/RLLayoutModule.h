@@ -11,6 +11,9 @@
 @class RLLayoutModule;
 
 #pragma mark - RLLayoutModuleDataSource
+/**
+ Defines messages required by the data source of an RLLayoutModule instance.
+ */
 @protocol RLLayoutModuleDataSource <NSObject>
 
 #pragma mark - Item Counts
@@ -21,7 +24,7 @@
  
  This message is required.
  
- @param layoutModule The module requesting this information.
+ @param layoutModule The layout module requesting this information.
  @returns The number of items in `module`.
  */
 -(NSInteger)numberOfItemsInLayoutModule:(RLLayoutModule*)layoutModule;
@@ -34,7 +37,7 @@
  
  This message is required.
  
- @param layoutModule The module requesting this information.
+ @param layoutModule The layout module requesting this information.
  @param index The logical index for the item, within the module. Use this index to retrieve data.
  @param collectionView The collection view containing the module.
  @param indexPath The absolute index path for the item in the collection view. Use this index path to dequeue cells.
@@ -48,6 +51,9 @@
 @end
 
 #pragma mark - RLLayoutModuleDelegate
+/**
+ Defines optional messages, providing notifications about or giving control over behavior of an RLLayoutModule instance.
+ */
 @protocol RLLayoutModuleDelegate <NSObject>
 
 @optional
@@ -62,7 +68,7 @@
  
  This method will not be called when the selection is set programmatically.
  
- @param layoutModule The module requesting this information.
+ @param layoutModule The layout module requesting this information.
  @param index The index of the item to be selected.
  @returns `YES` if the item should be selected, or `NO` if it should not.
  */
@@ -73,7 +79,7 @@
  
  This method will not be called when the selection is set programmatically.
  
- @param layoutModule The module sending this information.
+ @param layoutModule The layout module sending this information.
  @param index The index of the item that has been selected.
  */
 -(void)layoutModule:(RLLayoutModule*)layoutModule didSelectItemAtIndex:(NSInteger)index;
@@ -85,7 +91,7 @@
  
  This method will not be called when the selection is set programmatically.
  
- @param layoutModule The module requesting this information.
+ @param layoutModule The layout module requesting this information.
  @param index The index of the item to be deselected.
  @returns `YES` if the item should be deselected, or `NO` if it should not.
  */
@@ -96,7 +102,7 @@
  
  This method will not be called when the selection is set programmatically.
  
- @param layoutModule The module sending this information.
+ @param layoutModule The layout module sending this information.
  @param index The index of the item that has been deselected.
  */
 -(void)layoutModule:(RLLayoutModule*)layoutModule didDeselectItemAtIndex:(NSInteger)index;
@@ -109,7 +115,7 @@
  
  If this method is not implemented, the implicit return value is `YES`.
  
- @param layoutModule The module requesting this information.
+ @param layoutModule The layout module requesting this information.
  @param index The index of the item to be highlighted.
  @returns `YES` if the item should be highlighted, or `NO` if it should not.
  */
@@ -118,7 +124,7 @@
 /**
  Notifies the delegate that the item at the specified index has been highlighted.
  
- @param layoutModule The module sending this information.
+ @param layoutModule The layout module sending this information.
  @param index The index of the item that has been highlighted.
  */
 -(void)layoutModule:(RLLayoutModule*)layoutModule didHighlightItemAtIndex:(NSInteger)index;
@@ -126,7 +132,7 @@
 /**
  Notifies the delegate that the item at the specified index has been unhighlighted.
  
- @param layoutModule The module sending this information.
+ @param layoutModule The layout module sending this information.
  @param index The index of the item that has been unhighlighted.
  */
 -(void)layoutModule:(RLLayoutModule*)layoutModule didUnhighlightItemAtIndex:(NSInteger)index;
@@ -134,18 +140,25 @@
 @end
 
 #pragma mark - RLLayoutModule
+/**
+ An abstract base class for a module whose data is provided by a data source, and which provides delegate messages for
+ behavior customization and notifications.
+ 
+ This class does not implement [RLModule prepareLayoutAttributes:withOrigin:width:]. Subclasses must override that
+ message to avoid an exception being thrown.
+ */
 @interface RLLayoutModule : RLModule
 
 #pragma mark - Data Source
 /** @name Data Source */
 
-/** The data source for this module. */
+/** The data source for this layout module. */
 @property (nonatomic, weak) id<RLLayoutModuleDataSource> dataSource;
 
 #pragma mark - Delegate
 /** @name Delegate */
 
-/** The delegate for this module. */
+/** The delegate for this layout module. */
 @property (nonatomic, weak) id<RLLayoutModuleDelegate> delegate;
 
 @end
