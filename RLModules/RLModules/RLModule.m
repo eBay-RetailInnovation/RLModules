@@ -63,7 +63,53 @@ NSString *const kRLModuleContentInvalidationNotification = @"kRLModuleContentInv
 
 -(NSInteger)numberOfItems
 {
-    return [_dataSource numberOfItemsInModule:self];
+    [self doesNotRecognizeSelector:_cmd];
+    return 0;
+}
+
+@end
+
+@implementation RLModule (Implementation)
+
+#pragma mark - Views for Items
+-(UICollectionViewCell*)cellForItemAtIndex:(NSInteger)index
+                          inCollectionView:(UICollectionView*)collectionView
+                             withIndexPath:(NSIndexPath*)indexPath
+{
+    return nil;
+}
+
+#pragma mark - Selected Items
+-(BOOL)shouldSelectItemAtIndex:(NSInteger)index
+{
+    return YES;
+}
+
+-(void)didSelectItemAtIndex:(NSInteger)index
+{
+}
+
+-(BOOL)shouldDeselectItemAtIndex:(NSInteger)index
+{
+    return YES;
+}
+
+-(void)didDeselectItemAtIndex:(NSInteger)index
+{
+}
+
+#pragma mark - Highlighted Items
+-(BOOL)shouldHighlightItemAtIndex:(NSInteger)index
+{
+    return YES;
+}
+
+-(void)didHighlightItemAtIndex:(NSInteger)index
+{
+}
+
+-(void)didUnhighlightItemAtIndex:(NSInteger)index
+{
 }
 
 @end

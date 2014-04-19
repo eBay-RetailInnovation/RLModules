@@ -143,93 +143,52 @@
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    return [module.dataSource module:module
-                  cellForItemAtIndex:indexPath.item
-                    inCollectionView:collectionView
-                       withIndexPath:indexPath];
+    return [module cellForItemAtIndex:indexPath.item
+                     inCollectionView:collectionView
+                        withIndexPath:indexPath];
 }
 
 #pragma mark - Collection View Delegate
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    
-    if ([module.delegate respondsToSelector:@selector(module:shouldSelectItemAtIndex:)])
-    {
-        return [module.delegate module:module shouldSelectItemAtIndex:indexPath.item];
-    }
-    else
-    {
-        return YES;
-    }
+    return [module shouldSelectItemAtIndex:indexPath.item];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    
-    if ([module.delegate respondsToSelector:@selector(module:didSelectItemAtIndex:)])
-    {
-        [module.delegate module:module didSelectItemAtIndex:indexPath.item];
-    }
+    [module didSelectItemAtIndex:indexPath.item];
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    
-    if ([module.delegate respondsToSelector:@selector(module:shouldDeselectItemAtIndex:)])
-    {
-        return [module.delegate module:module shouldDeselectItemAtIndex:indexPath.item];
-    }
-    else
-    {
-        return YES;
-    }
+    return [module shouldDeselectItemAtIndex:indexPath.item];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    
-    if ([module.delegate respondsToSelector:@selector(module:didDeselectItemAtIndex:)])
-    {
-        [module.delegate module:module didDeselectItemAtIndex:indexPath.item];
-    }
+    return [module didDeselectItemAtIndex:indexPath.item];
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    
-    if ([module.delegate respondsToSelector:@selector(module:shouldHighlightItemAtIndex:)])
-    {
-        return [module.delegate module:module shouldHighlightItemAtIndex:indexPath.item];
-    }
-    else
-    {
-        return YES;
-    }
+    return [module shouldHighlightItemAtIndex:indexPath.item];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    
-    if ([module.delegate respondsToSelector:@selector(module:didHighlightItemAtIndex:)])
-    {
-        [module.delegate module:module didHighlightItemAtIndex:indexPath.item];
-    }
+    return [module didHighlightItemAtIndex:indexPath.item];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    
-    if ([module.delegate respondsToSelector:@selector(module:didUnhighlightItemAtIndex:)])
-    {
-        [module.delegate module:module didUnhighlightItemAtIndex:indexPath.item];
-    }
+    return [module didUnhighlightItemAtIndex:indexPath.item];
 }
 
 @end
