@@ -10,8 +10,18 @@
 
 @class RLMasonryModule;
 
+/**
+ Defines an additional method required by the delegates of RLMasonryModule instances.
+ */
 @protocol RLMasonryModuleDelegate <RLLayoutModuleDelegate>
 
+/**
+ Instructs the delegate to determine the height for an item in the masonry module.
+ 
+ @param masonryModule The masonry module asking for this information.
+ @param index The index of the item in the masonry module.
+ @param width The width of the column in the masonry module.
+ */
 -(CGFloat)masonryModule:(RLMasonryModule*)masonryModule heightForItemAtIndex:(NSInteger)index withWidth:(CGFloat)width;
 
 @end
