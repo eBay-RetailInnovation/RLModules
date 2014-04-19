@@ -22,6 +22,7 @@
 		414A807D190188E50099CD23 /* RLModulesCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A807C190188E50099CD23 /* RLModulesCollectionViewLayout.m */; };
 		414A80CC1901BB6E0099CD23 /* RLUnionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 414A80CB1901BB6E0099CD23 /* RLUnionModule.m */; };
 		43F097421901FFA000DF0083 /* RLLayoutModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F097411901FFA000DF0083 /* RLLayoutModule.m */; };
+		43F09745190205A300DF0083 /* RLMasonryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F09744190205A300DF0083 /* RLMasonryModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		414A80CB1901BB6E0099CD23 /* RLUnionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLUnionModule.m; sourceTree = "<group>"; };
 		43F097401901FFA000DF0083 /* RLLayoutModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLLayoutModule.h; sourceTree = "<group>"; };
 		43F097411901FFA000DF0083 /* RLLayoutModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLLayoutModule.m; sourceTree = "<group>"; };
+		43F09743190205A300DF0083 /* RLMasonryModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMasonryModule.h; sourceTree = "<group>"; };
+		43F09744190205A300DF0083 /* RLMasonryModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMasonryModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +207,8 @@
 				414A80711901806F0099CD23 /* RLTableModule.m */,
 				414A80731901816F0099CD23 /* RLGridModule.h */,
 				414A80741901816F0099CD23 /* RLGridModule.m */,
+				43F09743190205A300DF0083 /* RLMasonryModule.h */,
+				43F09744190205A300DF0083 /* RLMasonryModule.m */,
 			);
 			name = Layout;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				414A80721901806F0099CD23 /* RLTableModule.m in Sources */,
+				43F09745190205A300DF0083 /* RLMasonryModule.m in Sources */,
 				43F097421901FFA000DF0083 /* RLLayoutModule.m in Sources */,
 				414A806F190178540099CD23 /* RLModule.m in Sources */,
 				414A8079190187EB0099CD23 /* RLModulesViewController.m in Sources */,

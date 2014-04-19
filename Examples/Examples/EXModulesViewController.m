@@ -8,12 +8,13 @@
 
 #import "EXModulesViewController.h"
 
-@interface EXModulesViewController () <RLLayoutModuleDataSource, RLLayoutModuleDelegate>
+@interface EXModulesViewController () <RLLayoutModuleDataSource, RLMasonryModuleDelegate>
 {
 @private
-    // basic module
+    // basic modules
     RLTableModule *_tableModule;
     RLGridModule *_gridModule;
+    RLMasonryModule *_masonryModule;
     
     // header module
     RLUnionModule *_unionModule;
@@ -46,6 +47,11 @@
     _gridModule.delegate = self;
     _gridModule.edgeInsets = edgeInsets;
     
+    _masonryModule = [RLMasonryModule new];
+    _masonryModule.dataSource = self;
+    _masonryModule.delegate = self;
+    _masonryModule.edgeInsets = edgeInsets;
+    
     // header module
     _unionHeaderModule = [RLTableModule new];
     _unionHeaderModule.dataSource = self;
@@ -64,7 +70,7 @@
     _unionModule = [RLUnionModule new];
     _unionModule.modules = @[_unionHeaderModule, unionHidden, _unionContentModule];
     
-    self.modules = @[_tableModule, _gridModule, _unionModule];
+    self.modules = @[_tableModule, _gridModule, _masonryModule, _unionModule];
 }
 
 #pragma mark - Module Data Source
@@ -81,6 +87,12 @@
     UICollectionViewCell *cell = [self dequeueCellOfClass:[UICollectionViewCell class] atIndexPath:indexPath];
     cell.backgroundColor = [UIColor redColor];
     return cell;
+}
+
+#pragma mark - Masonry Module Delegate
+-(CGFloat)masonryModule:(RLMasonryModule *)masonryModule heightForItemAtIndex:(NSInteger)index withWidth:(CGFloat)width
+{
+    return 10 + 10 * (index % 3);
 }
 
 @end

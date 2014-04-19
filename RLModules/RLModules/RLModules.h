@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
-#import <RLModules/RLModule.h>
 #import <RLModules/RLGridModule.h>
+#import <RLModules/RLLayoutModule.h>
+#import <RLModules/RLMasonryModule.h>
+#import <RLModules/RLModule.h>
 #import <RLModules/RLModule+Implementation.h>
 #import <RLModules/RLModulesCollectionViewLayout.h>
 #import <RLModules/RLModulesViewController.h>
