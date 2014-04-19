@@ -68,15 +68,15 @@
 }
 
 #pragma mark - Module Data Source
--(NSInteger)numberOfItemsInModule:(RLModule *)module
+-(NSInteger)numberOfItemsInLayoutModule:(RLLayoutModule*)layoutModule
 {
     return 10;
 }
 
--(UICollectionViewCell*)module:(RLModule *)module
-            cellForItemAtIndex:(NSInteger)index
-              inCollectionView:(UICollectionView *)collectionView
-                 withIndexPath:(NSIndexPath *)indexPath
+-(UICollectionViewCell*)layoutModule:(RLLayoutModule*)layoutModule
+                  cellForItemAtIndex:(NSInteger)index
+                    inCollectionView:(UICollectionView *)collectionView
+                       withIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [self dequeueCellOfClass:[UICollectionViewCell class] atIndexPath:indexPath];
     cell.backgroundColor = [UIColor redColor];

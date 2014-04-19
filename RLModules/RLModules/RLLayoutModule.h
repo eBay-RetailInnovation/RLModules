@@ -8,7 +8,7 @@
 
 #import "RLModule.h"
 
-@class RLModule;
+@class RLLayoutModule;
 
 #pragma mark - RLLayoutModuleDataSource
 @protocol RLLayoutModuleDataSource <NSObject>
@@ -21,10 +21,10 @@
  
  This message is required.
  
- @param module The module requesting this information.
+ @param layoutModule The module requesting this information.
  @returns The number of items in `module`.
  */
--(NSInteger)numberOfItemsInModule:(RLModule*)module;
+-(NSInteger)numberOfItemsInLayoutModule:(RLLayoutModule*)layoutModule;
 
 #pragma mark - Views for Items
 /** @name Views for Items */
@@ -34,16 +34,16 @@
  
  This message is required.
  
- @param module The module requesting this information.
+ @param layoutModule The module requesting this information.
  @param index The logical index for the item, within the module. Use this index to retrieve data.
  @param collectionView The collection view containing the module.
  @param indexPath The absolute index path for the item in the collection view. Use this index path to dequeue cells.
  @returns A configured cell object. This message must not return `nil`.
  */
--(UICollectionViewCell*)module:(RLModule*)module
-            cellForItemAtIndex:(NSInteger)index
-              inCollectionView:(UICollectionView*)collectionView
-                 withIndexPath:(NSIndexPath*)indexPath;
+-(UICollectionViewCell*)layoutModule:(RLLayoutModule*)layoutModule
+                  cellForItemAtIndex:(NSInteger)index
+                    inCollectionView:(UICollectionView*)collectionView
+                       withIndexPath:(NSIndexPath*)indexPath;
 
 @end
 
@@ -62,21 +62,21 @@
  
  This method will not be called when the selection is set programmatically.
  
- @param module The module requesting this information.
+ @param layoutModule The module requesting this information.
  @param index The index of the item to be selected.
  @returns `YES` if the item should be selected, or `NO` if it should not.
  */
--(BOOL)module:(RLModule*)module shouldSelectItemAtIndex:(NSInteger)index;
+-(BOOL)layoutModule:(RLLayoutModule*)layoutModule shouldSelectItemAtIndex:(NSInteger)index;
 
 /**
  Notifies the delegate that the item at the specified index has been selected.
  
  This method will not be called when the selection is set programmatically.
  
- @param module The module sending this information.
+ @param layoutModule The module sending this information.
  @param index The index of the item that has been selected.
  */
--(void)module:(RLModule*)module didSelectItemAtIndex:(NSInteger)index;
+-(void)layoutModule:(RLLayoutModule*)layoutModule didSelectItemAtIndex:(NSInteger)index;
 
 /**
  Asks the delegate if the item at the specified index should be deselected.
@@ -85,21 +85,21 @@
  
  This method will not be called when the selection is set programmatically.
  
- @param module The module requesting this information.
+ @param layoutModule The module requesting this information.
  @param index The index of the item to be deselected.
  @returns `YES` if the item should be deselected, or `NO` if it should not.
  */
--(BOOL)module:(RLModule*)module shouldDeselectItemAtIndex:(NSInteger)index;
+-(BOOL)layoutModule:(RLLayoutModule*)layoutModule shouldDeselectItemAtIndex:(NSInteger)index;
 
 /**
  Notifies the delegate that the item at the specified index has been deselected.
  
  This method will not be called when the selection is set programmatically.
  
- @param module The module sending this information.
+ @param layoutModule The module sending this information.
  @param index The index of the item that has been deselected.
  */
--(void)module:(RLModule*)module didDeselectItemAtIndex:(NSInteger)index;
+-(void)layoutModule:(RLLayoutModule*)layoutModule didDeselectItemAtIndex:(NSInteger)index;
 
 #pragma mark - Highlighted Items
 /** @name Highlighted Items */
@@ -109,27 +109,27 @@
  
  If this method is not implemented, the implicit return value is `YES`.
  
- @param module The module requesting this information.
+ @param layoutModule The module requesting this information.
  @param index The index of the item to be highlighted.
  @returns `YES` if the item should be highlighted, or `NO` if it should not.
  */
--(BOOL)module:(RLModule *)module shouldHighlightItemAtIndex:(NSInteger)index;
+-(BOOL)layoutModule:(RLLayoutModule*)layoutModule shouldHighlightItemAtIndex:(NSInteger)index;
 
 /**
  Notifies the delegate that the item at the specified index has been highlighted.
  
- @param module The module sending this information.
+ @param layoutModule The module sending this information.
  @param index The index of the item that has been highlighted.
  */
--(void)module:(RLModule*)module didHighlightItemAtIndex:(NSInteger)index;
+-(void)layoutModule:(RLLayoutModule*)layoutModule didHighlightItemAtIndex:(NSInteger)index;
 
 /**
  Notifies the delegate that the item at the specified index has been unhighlighted.
  
- @param module The module sending this information.
+ @param layoutModule The module sending this information.
  @param index The index of the item that has been unhighlighted.
  */
--(void)module:(RLModule*)module didUnhighlightItemAtIndex:(NSInteger)index;
+-(void)layoutModule:(RLLayoutModule*)layoutModule didUnhighlightItemAtIndex:(NSInteger)index;
 
 @end
 

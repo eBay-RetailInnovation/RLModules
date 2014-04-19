@@ -14,7 +14,7 @@
 #pragma mark - Module State
 -(NSInteger)numberOfItems
 {
-    return [_dataSource numberOfItemsInModule:self];
+    return [_dataSource numberOfItemsInLayoutModule:self];
 }
 
 #pragma mark - Views for Items
@@ -22,15 +22,18 @@
                           inCollectionView:(UICollectionView*)collectionView
                              withIndexPath:(NSIndexPath*)indexPath
 {
-    return [_dataSource module:self cellForItemAtIndex:index inCollectionView:collectionView withIndexPath:indexPath];
+    return [_dataSource layoutModule:self
+                  cellForItemAtIndex:index
+                    inCollectionView:collectionView
+                       withIndexPath:indexPath];
 }
 
 #pragma mark - View Selection
 -(BOOL)shouldSelectItemAtIndex:(NSInteger)index
 {
-    if ([_delegate respondsToSelector:@selector(module:shouldSelectItemAtIndex:)])
+    if ([_delegate respondsToSelector:@selector(layoutModule:shouldSelectItemAtIndex:)])
     {
-        return [_delegate module:self shouldSelectItemAtIndex:index];
+        return [_delegate layoutModule:self shouldSelectItemAtIndex:index];
     }
     else
     {
@@ -40,17 +43,17 @@
 
 -(void)didSelectItemAtIndex:(NSInteger)index
 {
-    if ([_delegate respondsToSelector:@selector(module:didSelectItemAtIndex:)])
+    if ([_delegate respondsToSelector:@selector(layoutModule:didSelectItemAtIndex:)])
     {
-        [_delegate module:self didSelectItemAtIndex:index];
+        [_delegate layoutModule:self didSelectItemAtIndex:index];
     }
 }
 
 -(BOOL)shouldDeselectItemAtIndex:(NSInteger)index
 {
-    if ([_delegate respondsToSelector:@selector(module:shouldDeselectItemAtIndex:)])
+    if ([_delegate respondsToSelector:@selector(layoutModule:shouldDeselectItemAtIndex:)])
     {
-        return [_delegate module:self shouldDeselectItemAtIndex:index];
+        return [_delegate layoutModule:self shouldDeselectItemAtIndex:index];
     }
     else
     {
@@ -60,18 +63,18 @@
 
 -(void)didDeselectItemAtIndex:(NSInteger)index
 {
-    if ([_delegate respondsToSelector:@selector(module:didDeselectItemAtIndex:)])
+    if ([_delegate respondsToSelector:@selector(layoutModule:didDeselectItemAtIndex:)])
     {
-        [_delegate module:self didDeselectItemAtIndex:index];
+        [_delegate layoutModule:self didDeselectItemAtIndex:index];
     }
 }
 
 #pragma mark - View Highlighting
 -(BOOL)shouldHighlightItemAtIndex:(NSInteger)index
 {
-    if ([_delegate respondsToSelector:@selector(module:shouldHighlightItemAtIndex:)])
+    if ([_delegate respondsToSelector:@selector(layoutModule:shouldHighlightItemAtIndex:)])
     {
-        return [_delegate module:self shouldHighlightItemAtIndex:index];
+        return [_delegate layoutModule:self shouldHighlightItemAtIndex:index];
     }
     else
     {
@@ -81,17 +84,17 @@
 
 -(void)didHighlightItemAtIndex:(NSInteger)index
 {
-    if ([_delegate respondsToSelector:@selector(module:didHighlightItemAtIndex:)])
+    if ([_delegate respondsToSelector:@selector(layoutModule:didHighlightItemAtIndex:)])
     {
-        [_delegate module:self didHighlightItemAtIndex:index];
+        [_delegate layoutModule:self didHighlightItemAtIndex:index];
     }
 }
 
 -(void)didUnhighlightItemAtIndex:(NSInteger)index
 {
-    if ([_delegate respondsToSelector:@selector(module:didUnhighlightItemAtIndex:)])
+    if ([_delegate respondsToSelector:@selector(layoutModule:didUnhighlightItemAtIndex:)])
     {
-        [_delegate module:self didUnhighlightItemAtIndex:index];
+        [_delegate layoutModule:self didUnhighlightItemAtIndex:index];
     }
 }
 

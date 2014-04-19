@@ -154,7 +154,7 @@
     return origin.y;
 }
 
-#pragma mark - Module Data Source
+#pragma mark - Module State
 -(NSInteger)numberOfItems
 {
     NSInteger sum = 0;
@@ -181,49 +181,49 @@
 }
 
 #pragma mark - Module Delegate
--(BOOL)module:(RLModule *)module shouldSelectItemAtIndex:(NSInteger)index
+-(BOOL)shouldSelectItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
     return [childModule shouldSelectItemAtIndex:logicalIndex];
 }
 
--(void)module:(RLModule *)module didSelectItemAtIndex:(NSInteger)index
+-(void)didSelectItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
     [childModule didSelectItemAtIndex:logicalIndex];
 }
 
--(BOOL)module:(RLModule *)module shouldDeselectItemAtIndex:(NSInteger)index
+-(BOOL)shouldDeselectItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
     return [childModule shouldDeselectItemAtIndex:logicalIndex];
 }
 
--(void)module:(RLModule *)module didDeselectItemAtIndex:(NSInteger)index
+-(void)didDeselectItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
     [childModule didDeselectItemAtIndex:logicalIndex];
 }
 
--(BOOL)module:(RLModule *)module shouldHighlightItemAtIndex:(NSInteger)index
+-(BOOL)shouldHighlightItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
     return [childModule shouldHighlightItemAtIndex:logicalIndex];
 }
 
--(void)module:(RLModule *)module didHighlightItemAtIndex:(NSInteger)index
+-(void)didHighlightItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
     [childModule didHighlightItemAtIndex:logicalIndex];
 }
 
--(void)module:(RLModule *)module didUnhighlightItemAtIndex:(NSInteger)index
+-(void)didUnhighlightItemAtIndex:(NSInteger)index
 {
     NSInteger logicalIndex = 0;
     RLModule *childModule = [self childModuleAtIndex:index logicalIndex:&logicalIndex];
