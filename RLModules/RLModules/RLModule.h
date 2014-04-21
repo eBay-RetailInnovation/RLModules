@@ -16,16 +16,6 @@
 /** `YES` if the module is currently hidden, otherwise `NO`. */
 @property (nonatomic) BOOL hidden;
 
-#pragma mark - Background
-/** @name Background */
-
-/**
- The background color for the module.
- 
- For efficiency, do not set this property to `[UIColor clearColor]`. use `nil` instead.
- */
-@property (nonatomic, strong) UIColor *backgroundColor;
-
 #pragma mark - Spacing
 /** @name Spacing */
 

@@ -54,13 +54,6 @@
     }
 }
 
-#pragma mark - Background
--(void)setBackgroundColor:(UIColor *)backgroundColor
-{
-    _backgroundColor = backgroundColor;
-    [self invalidateLayout];
-}
-
 #pragma mark - Spacing
 -(void)setEdgeInsets:(UIEdgeInsets)edgeInsets
 {
