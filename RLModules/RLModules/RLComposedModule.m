@@ -90,6 +90,51 @@
     self.visibleSubmodules = [self visibleModulesInArray:_submodules];
 }
 
+-(void)module:(RLModule *)module insertItemsAtIndexes:(NSArray *)indexes
+{
+    if ([self.visibleSubmodules containsObject:module])
+    {
+        NSArray *translated = [self translateIndexes:indexes fromModule:module];
+        
+        [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+            if ([moduleObserver respondsToSelector:@selector(module:insertItemsAtIndexes:)])
+            {
+                [moduleObserver module:self insertItemsAtIndexes:translated];
+            }
+        }];
+    }
+}
+
+-(void)module:(RLModule *)module deleteItemsAtIndexes:(NSArray *)indexes
+{
+    if ([self.visibleSubmodules containsObject:module])
+    {
+        NSArray *translated = [self translateIndexes:indexes fromModule:module];
+        
+        [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+            if ([moduleObserver respondsToSelector:@selector(module:deleteItemsAtIndexes:)])
+            {
+                [moduleObserver module:self deleteItemsAtIndexes:translated];
+            }
+        }];
+    }
+}
+
+-(void)module:(RLModule *)module moveItemAtIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
+{
+    if ([self.visibleSubmodules containsObject:module])
+    {
+        NSUInteger offset = [self offsetForModule:module];
+        
+        [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+            if ([moduleObserver respondsToSelector:@selector(module:moveItemAtIndex:toIndex:)])
+            {
+                [moduleObserver module:self moveItemAtIndex:fromIndex + offset toIndex:toIndex + offset];
+            }
+        }];
+    }
+}
+
 #pragma mark - Child Modules
 -(RLModule*)submoduleAtIndex:(NSInteger)index submoduleItemIndex:(NSInteger*)submoduleItemIndex
 {
@@ -111,6 +156,41 @@
     }
     
     return nil;
+}
+
+-(NSUInteger)offsetForModule:(RLModule*)module
+{
+    NSUInteger index = [self.visibleSubmodules indexOfObject:module];
+    
+    if (index != NSNotFound)
+    {
+        NSInteger offset = 0;
+        
+        for (NSUInteger i = 0; i < index; i++)
+        {
+            offset += [(RLModule*)self.visibleSubmodules[i] numberOfItems];
+        }
+        
+        return offset;
+    }
+    else
+    {
+        return NSNotFound;
+    }
+}
+
+-(NSArray*)translateIndexes:(NSArray*)indexes fromModule:(RLModule*)module
+{
+    NSUInteger offset = [self offsetForModule:module];
+    
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:indexes.count];
+    
+    for (NSNumber *number in indexes)
+    {
+        [array addObject:@(number.unsignedIntegerValue + offset)];
+    }
+    
+    return array;
 }
 
 #pragma mark - Layout
