@@ -75,7 +75,11 @@
 #pragma mark - Selection
 /** @name Selection */
 
-/** If `YES`, items in the module may be selected. If `NO`, they may not be selected. */
+/**
+ If `YES`, items in the module may be selected. If `NO`, they may not be selected.
+ 
+ The default value for this property is `YES`.
+ */
 @property (nonatomic) BOOL allowsSelection;
 
 #pragma mark - Module State

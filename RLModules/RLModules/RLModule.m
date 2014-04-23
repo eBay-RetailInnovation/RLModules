@@ -33,6 +33,7 @@
     if (self)
     {
         _moduleObservers = [NSHashTable weakObjectsHashTable];
+        _allowsSelection = YES;
     }
     
     return self;
