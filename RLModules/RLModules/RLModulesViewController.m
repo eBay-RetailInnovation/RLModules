@@ -79,6 +79,24 @@
     [_collectionView reloadData];
 }
 
+-(NSInteger)sectionForModule:(RLModule*)module
+{
+    return [_visibleModules indexOfObject:module];
+}
+
+-(NSArray*)indexPathsForIndexes:(NSArray*)indexes inModule:(RLModule*)module
+{
+    NSInteger section = [self sectionForModule:module];
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:indexes.count];
+    
+    for (NSNumber *number in indexes)
+    {
+        [array addObject:[NSIndexPath indexPathForItem:number.integerValue inSection:section]];
+    }
+    
+    return array;
+}
+
 #pragma mark - Module Observer
 -(void)module:(RLModule *)module hiddenStateChanged:(BOOL)hidden
 {
@@ -95,6 +113,34 @@
         [UIView setAnimationsEnabled:animated];
         [_collectionView reloadSections:[NSIndexSet indexSetWithIndex:index]];
         [UIView setAnimationsEnabled:enabled];
+    }
+}
+
+-(void)module:(RLModule *)module insertItemsAtIndexes:(NSArray *)indexes
+{
+    if ([_visibleModules containsObject:module])
+    {
+        [_collectionView insertItemsAtIndexPaths:[self indexPathsForIndexes:indexes inModule:module]];
+    }
+}
+
+-(void)module:(RLModule *)module deleteItemsAtIndexes:(NSArray *)indexes
+{
+    if ([_visibleModules containsObject:module])
+    {
+        [_collectionView deleteItemsAtIndexPaths:[self indexPathsForIndexes:indexes inModule:module]];
+    }
+}
+
+-(void)module:(RLModule *)module moveItemAtIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
+{
+    if ([_visibleModules containsObject:module])
+    {
+        NSInteger section = [self sectionForModule:module];
+        NSIndexPath *fromPath = [NSIndexPath indexPathForItem:fromIndex inSection:section];
+        NSIndexPath *toPath = [NSIndexPath indexPathForItem:toIndex inSection:section];
+        
+        [_collectionView moveItemAtIndexPath:fromPath toIndexPath:toPath];
     }
 }
 
