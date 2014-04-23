@@ -135,6 +135,24 @@
     }
 }
 
+-(void)module:(RLModule *)module
+scrollToItemAtIndex:(NSInteger)index
+atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
+     animated:(BOOL)animated
+{
+    if ([_visibleSubmodules containsObject:module])
+    {
+        NSInteger new = index + [self offsetForModule:module];
+        
+        [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+            if ([moduleObserver respondsToSelector:@selector(module:scrollToItemAtIndex:atScrollPosition:animated:)])
+            {
+                [moduleObserver module:self scrollToItemAtIndex:new atScrollPosition:scrollPosition animated:animated];
+            }
+        }];
+    }
+}
+
 #pragma mark - Child Modules
 -(RLModule*)submoduleAtIndex:(NSInteger)index submoduleItemIndex:(NSInteger*)submoduleItemIndex
 {
