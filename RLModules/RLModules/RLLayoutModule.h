@@ -201,4 +201,29 @@
           atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
                   animated:(BOOL)animated;
 
+#pragma mark - Modifying Selection
+/** @name Modifying Selection */
+
+/**
+ Selects the item at the specified index and optionally scrolls it into view.
+ 
+ This method does not cause any selection-related methods or delegate methods to be called.
+ 
+ @param index The index that should be selected.
+ @param animated Specify `YES` to animate the change in the selection or `NO` to make the change without animating it.
+ @param scrollPosition An option that specifies where the item should be positioned when scrolling finishes. For a list
+ of possible values, see `UICollectionViewScrollPosition`.
+ */
+-(void)selectItemAtIndex:(NSInteger)index
+                animated:(BOOL)animated
+          scrollPosition:(UICollectionViewScrollPosition)scrollPosition;
+
+/**
+ Deselects the item at the specified index.
+ 
+ @param index The index to deselect.
+ @param animated Specify `YES` to animate the change in the selection or `NO` to make the change without animating it.
+ */
+-(void)deselectItemAtIndex:(NSInteger)index animated:(BOOL)animated;
+
 @end

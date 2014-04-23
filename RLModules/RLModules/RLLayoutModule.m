@@ -55,6 +55,29 @@
     }];
 }
 
+#pragma mark - Modifying Selection
+-(void)selectItemAtIndex:(NSInteger)index
+                animated:(BOOL)animated
+          scrollPosition:(UICollectionViewScrollPosition)scrollPosition
+{
+    [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+        if ([moduleObserver respondsToSelector:@selector(module:selectItemAtIndex:animated:scrollPosition:)])
+        {
+            [moduleObserver module:self selectItemAtIndex:index animated:animated scrollPosition:scrollPosition];
+        }
+    }];
+}
+
+-(void)deselectItemAtIndex:(NSInteger)index animated:(BOOL)animated
+{
+    [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+        if ([moduleObserver respondsToSelector:@selector(module:deselectItemAtIndex:animated:)])
+        {
+            [moduleObserver module:self deselectItemAtIndex:index animated:animated];
+        }
+    }];
+}
+
 #pragma mark - Module State
 -(NSInteger)calculateNumberOfItems
 {
