@@ -65,10 +65,24 @@
  */
 -(void)module:(RLModule *)module moveItemAtIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
 
+/**
+ Notifies the receiver that an item should be scrolled into view.
+ 
+ @param module The module.
+ @param index The index of the item.
+ @param scrollPosition An option that specifies where the item should be positioned when scrolling finishes. For a list
+ of possible values, see `UICollectionViewScrollPosition`.
+ @param animated If `YES`, the scrolling adjustment will be animated. If `NO`, it will be immediate.
+ */
+-(void)module:(RLModule *)module
+scrollToItemAtIndex:(NSInteger)index
+atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
+     animated:(BOOL)animated;
+
 @end
 
 /**
- This category provides the messages needed to implement a concrete module subclass (but not a subclass of 
+ This category provides the messages needed to implement a concrete module subclass (but not a subclass of
  RLComposedModule or RLLayoutModule - everything needed is provided in those classes).
  
  It is not included in the `RLModules.h` header file, and must be imported explicitly.

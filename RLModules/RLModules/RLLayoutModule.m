@@ -42,6 +42,19 @@
     }];
 }
 
+#pragma mark - Scrolling an Item Into View
+-(void)scrollToItemAtIndex:(NSInteger)index
+          atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
+                  animated:(BOOL)animated
+{
+    [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+        if ([moduleObserver respondsToSelector:@selector(module:scrollToItemAtIndex:atScrollPosition:animated:)])
+        {
+            [moduleObserver module:self scrollToItemAtIndex:index atScrollPosition:scrollPosition animated:animated];
+        }
+    }];
+}
+
 #pragma mark - Module State
 -(NSInteger)calculateNumberOfItems
 {

@@ -186,4 +186,19 @@
  */
 -(void)moveItemAtIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
 
+#pragma mark - Scrolling an Item Into View
+/** @name Scrolling an Item Into View */
+
+/**
+ Scrolls the view contents until the item at the specified index is visible.
+ 
+ @param index The index of the item.
+ @param scrollPosition An option that specifies where the item should be positioned when scrolling finishes. For a list
+ of possible values, see `UICollectionViewScrollPosition`.
+ @param animated If `YES`, the scrolling adjustment will be animated. If `NO`, it will be immediate.
+ */
+-(void)scrollToItemAtIndex:(NSInteger)index
+          atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
+                  animated:(BOOL)animated;
+
 @end
