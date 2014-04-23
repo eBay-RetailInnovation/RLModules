@@ -44,7 +44,7 @@
 
 /**
  This category provides the messages needed to implement a concrete module subclass (but not a subclass of 
- RLCompoundModule or RLLayoutModule - everything needed is provided in those classes).
+ RLComposedModule or RLLayoutModule - everything needed is provided in those classes).
  
  It is not included in the `RLModules.h` header file, and must be imported explicitly.
  */
@@ -186,8 +186,8 @@
 /**
  Indicates that the number of items of the module has changed, and should be reloaded.
  
- Note that this message does not pass `-reloadData` - instead, `-reloadData` passes this message. Therefore, it is
- typically not necessary for clients to pass this message.
+ Note that this message does not pass `-[RLModule reloadData]` - instead, `-[RLModule reloadData]` passes this message.
+ Therefore, it is typically not necessary for clients to pass this message.
  */
 -(void)invalidateNumberOfItems;
 
