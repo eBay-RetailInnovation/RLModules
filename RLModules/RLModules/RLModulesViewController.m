@@ -144,6 +144,20 @@
     }
 }
 
+-(void)module:(RLModule *)module
+scrollToItemAtIndex:(NSInteger)index
+atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
+     animated:(BOOL)animated
+{
+    if ([_visibleModules containsObject:module])
+    {
+        NSInteger section = [self sectionForModule:module];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:section];
+        
+        [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
+    }
+}
+
 #pragma mark - Cell Classes
 -(void)registerCellClassForReuse:(Class)klass
 {
