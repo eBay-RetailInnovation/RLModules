@@ -12,6 +12,9 @@
 
 /**
  Defines optional methods for observers of RLModule instances.
+ 
+ RLModulesViewController and RLCompoundModule use this protocol internally. It should not be necessary to implement
+ this protocol (if it is, RLModules is probably deficient in some way - improve it instead).
  */
 @protocol RLModuleObserver <NSObject>
 
