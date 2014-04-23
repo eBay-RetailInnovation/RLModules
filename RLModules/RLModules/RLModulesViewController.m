@@ -85,13 +85,16 @@
     self.visibleModules = [self visibleModulesInArray:_modules];
 }
 
--(void)moduleContentInvalidated:(RLModule *)module
+-(void)module:(RLModule *)module reloadDataAnimated:(BOOL)animated
 {
     NSUInteger index = [_visibleModules indexOfObject:module];
     
     if (index != NSNotFound)
     {
+        BOOL enabled = [UIView areAnimationsEnabled];
+        [UIView setAnimationsEnabled:animated];
         [_collectionView reloadSections:[NSIndexSet indexSetWithIndex:index]];
+        [UIView setAnimationsEnabled:enabled];
     }
 }
 

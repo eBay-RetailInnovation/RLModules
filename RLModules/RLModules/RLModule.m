@@ -93,14 +93,19 @@
 }
 
 #pragma mark - Module State
--(void)invalidateContent
+-(void)reloadData
 {
-    _numberOfItemsValid = NO;
+    [self reloadDataAnimated:NO];
+}
+
+-(void)reloadDataAnimated:(BOOL)animated
+{
+    [self invalidateNumberOfItems];
     
     [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
-        if ([moduleObserver respondsToSelector:@selector(moduleContentInvalidated:)])
+        if ([moduleObserver respondsToSelector:@selector(module:reloadDataAnimated:)])
         {
-            [moduleObserver moduleContentInvalidated:self];
+            [moduleObserver module:self reloadDataAnimated:animated];
         }
     }];
 }
@@ -185,6 +190,11 @@
 {
     [self doesNotRecognizeSelector:_cmd];
     return 0;
+}
+
+-(void)invalidateNumberOfItems
+{
+    _numberOfItemsValid = NO;
 }
 
 @end

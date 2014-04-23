@@ -54,7 +54,7 @@
 -(void)setVisibleSubmodules:(NSArray *)visibleSubmodules
 {
     _visibleSubmodules = visibleSubmodules;
-    [self invalidateContent];
+    [self invalidateNumberOfItems];
 }
 
 -(void)invalidateSubmodules
@@ -69,11 +69,11 @@
 }
 
 #pragma mark - Module Observer
--(void)moduleContentInvalidated:(RLModule *)module
+-(void)module:(RLModule *)module reloadDataAnimated:(BOOL)animated
 {
     if ([_visibleSubmodules containsObject:module])
     {
-        [self invalidateContent];
+        [self reloadDataAnimated:animated];
     }
 }
 

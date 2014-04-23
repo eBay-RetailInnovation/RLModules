@@ -76,12 +76,22 @@
 /** @name Module State */
 
 /**
- Indicates that the content of the module has changed, and that the module should be reloaded.
+ Reloads the module, without animation.
  
- Subclasses (especially meta-modules) may use this if a property changes that would alter the number of items in the
+ Subclasses (especially composed modules) may use this if a property changes that would alter the number of items in the
  module. Clients may use this when the model changes.
  */
--(void)invalidateContent;
+-(void)reloadData;
+
+/**
+ Reloads the module, with optional animation.
+ 
+ Subclasses (especially composed modules) may use this if a property changes that would alter the number of items in the
+ module. Clients may use this when the model changes.
+ 
+ @param animated If `YES` the module's reload will be animated. If `NO`, it will not be animated.
+ */
+-(void)reloadDataAnimated:(BOOL)animated;
 
 /**
  Returns the number of items in the module.

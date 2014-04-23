@@ -10,6 +10,9 @@
 
 @class RLModule;
 
+/**
+ Defines optional methods for observers of RLModule instances.
+ */
 @protocol RLModuleObserver <NSObject>
 
 @optional
@@ -22,11 +25,12 @@
 -(void)moduleLayoutInvalidated:(RLModule*)module;
 
 /**
- Notifies the receiver that a module's content is invalid.
+ Notifies the receiver that a module's content should be reloaded.
  
  @param module The invalidated module.
+ @param animated If the reload should be animated.
  */
--(void)moduleContentInvalidated:(RLModule*)module;
+-(void)module:(RLModule*)module reloadDataAnimated:(BOOL)animated;
 
 /**
  Notifies the reciever that a module's hidden state has changed.
@@ -39,7 +43,8 @@
 @end
 
 /**
- This category provides the messages needed to implement a concrete module subclass.
+ This category provides the messages needed to implement a concrete module subclass (but not a subclass of 
+ RLCompoundModule or RLLayoutModule - everything needed is provided in those classes).
  
  It is not included in the `RLModules.h` header file, and must be imported explicitly.
  */
@@ -177,5 +182,13 @@
  The default implementation throws an exception.
  */
 -(NSInteger)calculateNumberOfItems;
+
+/**
+ Indicates that the number of items of the module has changed, and should be reloaded.
+ 
+ Note that this message does not pass `-reloadData` - instead, `-reloadData` passes this message. Therefore, it is
+ typically not necessary for clients to pass this message.
+ */
+-(void)invalidateNumberOfItems;
 
 @end
