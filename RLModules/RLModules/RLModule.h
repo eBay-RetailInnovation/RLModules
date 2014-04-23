@@ -72,6 +72,12 @@
                        withOrigin:(CGPoint)origin
                             width:(CGFloat)width;
 
+#pragma mark - Selection
+/** @name Selection */
+
+/** If `YES`, items in the module may be selected. If `NO`, they may not be selected. */
+@property (nonatomic) BOOL allowsSelection;
+
 #pragma mark - Module State
 /** @name Module State */
 

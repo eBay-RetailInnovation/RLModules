@@ -272,7 +272,15 @@ atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
 {
     NSInteger submoduleItemIndex = 0;
     RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
-    return [submodule shouldSelectItemAtIndex:submoduleItemIndex];
+    
+    if (submodule.allowsSelection)
+    {
+        return [submodule shouldSelectItemAtIndex:submoduleItemIndex];
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 -(void)didSelectItemAtIndex:(NSInteger)index
@@ -301,7 +309,15 @@ atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
 {
     NSInteger submoduleItemIndex = 0;
     RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
-    return [submodule shouldHighlightItemAtIndex:submoduleItemIndex];
+    
+    if (submodule.allowsSelection)
+    {
+        return [submodule shouldHighlightItemAtIndex:submoduleItemIndex];
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 -(void)didHighlightItemAtIndex:(NSInteger)index

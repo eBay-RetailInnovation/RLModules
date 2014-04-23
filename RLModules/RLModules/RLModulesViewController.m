@@ -205,7 +205,15 @@ atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    return [module shouldSelectItemAtIndex:indexPath.item];
+    
+    if (module.allowsSelection)
+    {
+        return [module shouldSelectItemAtIndex:indexPath.item];
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -229,7 +237,15 @@ atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    return [module shouldHighlightItemAtIndex:indexPath.item];
+    
+    if (module.allowsSelection)
+    {
+        return [module shouldHighlightItemAtIndex:indexPath.item];
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
