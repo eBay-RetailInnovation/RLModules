@@ -17,12 +17,18 @@
 
 @optional
 
+#pragma mark - Layout Invalidation
+/** @name Layout Invalidation */
+
 /**
  Notifies the receiver that a module's layout is invalid.
  
  @param module The invalidated module.
  */
 -(void)moduleLayoutInvalidated:(RLModule*)module;
+
+#pragma mark - Reloading Data
+/** @name Reloading Data */
 
 /**
  Notifies the receiver that a module's content should be reloaded.
@@ -32,6 +38,9 @@
  */
 -(void)module:(RLModule*)module reloadDataAnimated:(BOOL)animated;
 
+#pragma mark - State Changes
+/** @name State Changes */
+
 /**
  Notifies the reciever that a module's hidden state has changed.
  
@@ -39,6 +48,9 @@
  @param hidden The new hidden state.
  */
 -(void)module:(RLModule*)module hiddenStateChanged:(BOOL)hidden;
+
+#pragma mark - Inserting, Moving, and Deleting Items
+/** @name Inserting, Moving, and Deleting Items */
 
 /**
  Notifies the receiver that items should be inserted into the module.
@@ -65,6 +77,9 @@
  */
 -(void)module:(RLModule *)module moveItemAtIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
 
+#pragma mark - Scrolling an Item Into View
+/** @name Scrolling an Item Into View */
+
 /**
  Notifies the receiver that an item should be scrolled into view.
  
@@ -80,6 +95,8 @@ atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
      animated:(BOOL)animated;
 
 @end
+
+#pragma mark -
 
 /**
  This category provides the messages needed to implement a concrete module subclass (but not a subclass of
