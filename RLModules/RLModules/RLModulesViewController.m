@@ -158,6 +158,31 @@ atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
     }
 }
 
+-(void)module:(RLModule *)module
+selectItemAtIndex:(NSInteger)index
+     animated:(BOOL)animated
+scrollPosition:(UICollectionViewScrollPosition)scrollPosition
+{
+    if ([_visibleModules containsObject:module])
+    {
+        NSInteger section = [self sectionForModule:module];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:section];
+        
+        [_collectionView selectItemAtIndexPath:indexPath animated:animated scrollPosition:scrollPosition];
+    }
+}
+
+-(void)module:(RLModule *)module deselectItemAtIndex:(NSInteger)index animated:(BOOL)animated
+{
+    if ([_visibleModules containsObject:module])
+    {
+        NSInteger section = [self sectionForModule:module];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:section];
+        
+        [_collectionView deselectItemAtIndexPath:indexPath animated:animated];
+    }
+}
+
 #pragma mark - Cell Classes
 -(void)registerCellClassForReuse:(Class)klass
 {
