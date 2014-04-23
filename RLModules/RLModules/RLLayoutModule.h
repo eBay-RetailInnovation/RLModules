@@ -161,4 +161,29 @@
 /** The delegate for this layout module. */
 @property (nonatomic, weak) id<RLLayoutModuleDelegate> delegate;
 
+#pragma mark - Inserting, Moving, and Deleting Items
+/** @name Inserting, Moving, and Deleting Items */
+
+/**
+ Inserts one or more new items into the layout module.
+ 
+ @param indexes An array of indexes, represented as `NSNumber` instances. This parameter must not be `nil`.
+ */
+-(void)insertItemsAtIndexes:(NSArray*)indexes;
+
+/**
+ Deletes one or more items from the layout module.
+ 
+ @param indexes An array of indexes, represented as `NSNumber` instances. This parameter must not be `nil`.
+ */
+-(void)deleteItemsAtIndexes:(NSArray*)indexes;
+
+/**
+ Moves an item from one location to another in the layout module.
+ 
+ @param fromIndex The original index of the item.
+ @param toIndex The new index of the item.
+ */
+-(void)moveItemAtIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
+
 @end

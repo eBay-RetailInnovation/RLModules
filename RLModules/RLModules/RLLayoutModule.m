@@ -11,6 +11,37 @@
 
 @implementation RLLayoutModule
 
+#pragma mark - Inserting, Moving, and Deleting Items
+-(void)insertItemsAtIndexes:(NSArray*)indexes
+{
+    [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+        if ([moduleObserver respondsToSelector:@selector(module:insertItemsAtIndexes:)])
+        {
+            [moduleObserver module:self insertItemsAtIndexes:indexes];
+        }
+    }];
+}
+
+-(void)deleteItemsAtIndexes:(NSArray*)indexes
+{
+    [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+        if ([moduleObserver respondsToSelector:@selector(module:deleteItemsAtIndexes:)])
+        {
+            [moduleObserver module:self deleteItemsAtIndexes:indexes];
+        }
+    }];
+}
+
+-(void)moveItemAtIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
+{
+    [self enumerateModuleObservers:^(id<RLModuleObserver> moduleObserver) {
+        if ([moduleObserver respondsToSelector:@selector(module:moveItemAtIndex:toIndex:)])
+        {
+            [moduleObserver module:self moveItemAtIndex:fromIndex toIndex:toIndex];
+        }
+    }];
+}
+
 #pragma mark - Module State
 -(NSInteger)calculateNumberOfItems
 {

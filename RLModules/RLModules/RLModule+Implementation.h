@@ -40,6 +40,31 @@
  */
 -(void)module:(RLModule*)module hiddenStateChanged:(BOOL)hidden;
 
+/**
+ Notifies the receiver that items should be inserted into the module.
+ 
+ @param module The module.
+ @param indexes An array of indexes, represented as `NSNumber` instances.
+ */
+-(void)module:(RLModule *)module insertItemsAtIndexes:(NSArray*)indexes;
+
+/**
+ Notifies the receiver that items should be deleted from the module.
+ 
+ @param module The module.
+ @param indexes An array of indexes, represented as `NSNumber` instances.
+ */
+-(void)module:(RLModule *)module deleteItemsAtIndexes:(NSArray*)indexes;
+
+/**
+ Notifies the receiver that an item should be moved to a new index.
+ 
+ @param module The module.
+ @param fromIndex The original index of the item.
+ @param toIndex The new index of the item.
+ */
+-(void)module:(RLModule *)module moveItemAtIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
+
 @end
 
 /**
