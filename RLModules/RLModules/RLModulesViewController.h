@@ -52,6 +52,8 @@
  Registers the cell classes required by a module controller class.
  
  The module controller must implement `+[RLModuleController requiredCellClasses]`.
+ 
+ @param moduleControllerClass The module controller class to register cell classes for.
  */
 -(void)registerCellClassesForModuleControllerClass:(Class)moduleControllerClass;
 
