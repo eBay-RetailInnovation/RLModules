@@ -88,6 +88,7 @@
 -(void)module:(RLModule *)module hiddenStateChanged:(BOOL)hidden
 {
     self.visibleSubmodules = [self visibleModulesInArray:_submodules];
+    [self reloadData];
 }
 
 -(void)module:(RLModule *)module insertItemsAtIndexes:(NSArray *)indexes
