@@ -44,4 +44,11 @@ NSString *const kRLModuleControllerNilModuleException = @"RLModuleControllerNilM
     return @[];
 }
 
+-(id)dequeueCellOfClass:(Class)klass
+            atIndexPath:(NSIndexPath*)indexPath
+       inCollectionView:(UICollectionView*)collectionView
+{
+    return [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(klass) forIndexPath:indexPath];
+}
+
 @end

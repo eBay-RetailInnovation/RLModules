@@ -42,4 +42,18 @@ FOUNDATION_EXTERN NSString *const kRLModuleControllerNilModuleException;
  */
 +(NSArray*)requiredCellClasses;
 
+/**
+ Dequeues a cell of the specified class at the specified index path.
+ 
+ The cell class must have been previously registered.
+ 
+ @param klass The cell class to dequeue.
+ @param indexPath The index path to dequeue at.
+ @param collectionView The collection view to dequeue in.
+ @returns An instance of `klass`.
+ */
+-(id)dequeueCellOfClass:(Class)klass
+            atIndexPath:(NSIndexPath*)indexPath
+       inCollectionView:(UICollectionView*)collectionView;
+
 @end
