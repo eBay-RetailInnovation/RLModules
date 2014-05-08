@@ -103,6 +103,14 @@ static NSArray* RLModulesCollectionViewLayoutMapToInteger(NSUInteger integer, RL
             // information about this section
             RLModule *module = _modules[section];
             NSInteger itemCount = [collectionView numberOfItemsInSection:section];
+            
+            // padding for the first section
+            if (section == 0)
+            {
+                yOffset += module.minimumTopPadding;
+            }
+            
+            // store y offset
             _yOffsets[section] = yOffset;
             
             // build an array of layout attributes for this section
