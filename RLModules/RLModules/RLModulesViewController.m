@@ -29,17 +29,23 @@
 }
 
 #pragma mark - View Loading
+-(void)loadCollectionView
+{
+    _collectionViewLayout = [RLModulesCollectionViewLayout new];
+    _collectionViewLayout.modules = _modules;
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_collectionViewLayout];
+    _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
+}
+
 -(void)loadView
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     
-    _collectionViewLayout = [RLModulesCollectionViewLayout new];
-    _collectionViewLayout.modules = _modules;
-    
-    _collectionView = [[UICollectionView alloc] initWithFrame:view.bounds collectionViewLayout:_collectionViewLayout];
-    _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    _collectionView.dataSource = self;
-    _collectionView.delegate = self;
+    [self loadCollectionView];
+    self.collectionView.frame = view.bounds;
     [view addSubview:_collectionView];
     
     self.view = view;

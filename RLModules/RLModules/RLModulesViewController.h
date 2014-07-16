@@ -72,6 +72,14 @@
 /** @name Collection View */
 
 /**
+ Loads the collection view used by this view controller.
+ 
+ Subclasses can use this message to provide a custom implementation of `-loadView`. It should not be necessary to
+ override this message.
+ */
+-(void)loadCollectionView;
+
+/**
  The collection view used by this view controller.
  
  Although this property is visible, it is generally advisable to avoid using it, except in very advanced and specialized
