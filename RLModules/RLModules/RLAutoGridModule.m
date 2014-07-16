@@ -41,7 +41,7 @@
 {
     // calculate number of columns
     NSUInteger numberOfColumns = 1;
-    for (; numberOfColumns * _tileSize.width + (numberOfColumns - 1) * _innerPadding.width < width; numberOfColumns++);
+    for (; (numberOfColumns + 1) * _tileSize.width + numberOfColumns * _innerPadding.width < width; numberOfColumns++);
     
     // prepare layout attribute frames
     NSUInteger count = layoutAttributes.count;
