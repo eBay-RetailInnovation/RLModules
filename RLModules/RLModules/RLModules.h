@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
+#import <RLModules/RLAutoGridModule.h>
 #import <RLModules/RLComposedArrayModule.h>
 #import <RLModules/RLComposedModule.h>
 #import <RLModules/RLDynamicTableModule.h>
