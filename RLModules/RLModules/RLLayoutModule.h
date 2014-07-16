@@ -149,6 +149,19 @@
  */
 @interface RLLayoutModule : RLModule
 
+#pragma mark - Initialization
+/** @name Initialization */
+
+/**
+ Returns an initalized module, with `dataSource` and `delegate` set to the object passed in.
+
+ @param target An object implementing `RLLayoutModuleDelegate` and `RLLayoutModuleDelegate`, which the new module's
+               `dataSource` and `delegate` properties will be set to.
+
+ @return An initalized layut module.
+*/
++(instancetype)moduleWithTarget:(id<RLLayoutModuleDataSource,RLLayoutModuleDelegate>)target;
+
 #pragma mark - Data Source
 /** @name Data Source */
 

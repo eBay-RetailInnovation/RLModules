@@ -11,6 +11,15 @@
 
 @implementation RLLayoutModule
 
+#pragma mark - Initialization
++(instancetype)moduleWithTarget:(id<RLLayoutModuleDataSource,RLLayoutModuleDelegate>)target
+{
+    RLLayoutModule *module = [self new];
+    module.dataSource = target;
+    module.delegate = target;
+    return module;
+}
+
 #pragma mark - Inserting, Moving, and Deleting Items
 -(void)insertItemsAtIndexes:(NSArray*)indexes
 {

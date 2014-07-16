@@ -10,6 +10,14 @@
 
 @implementation RLComposedArrayModule
 
+#pragma mark - Initializers
++(instancetype)moduleWithModules:(NSArray*)modules
+{
+    RLComposedArrayModule *module = [self new];
+    module.modules = modules;
+    return module;
+}
+
 #pragma mark - Modules
 -(void)setModules:(NSArray *)modules
 {
