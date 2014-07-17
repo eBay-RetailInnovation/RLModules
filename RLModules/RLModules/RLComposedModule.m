@@ -317,11 +317,11 @@ scrollPosition:(UICollectionViewScrollPosition)scrollPosition
     }
 }
 
--(void)didSelectItemAtIndex:(NSInteger)index
+-(void)didSelectItemAtIndex:(NSInteger)index withCell:(UICollectionViewCell *)cell
 {
     NSInteger submoduleItemIndex = 0;
     RLModule *submodule = [self submoduleAtIndex:index submoduleItemIndex:&submoduleItemIndex];
-    [submodule didSelectItemAtIndex:submoduleItemIndex];
+    [submodule didSelectItemAtIndex:submoduleItemIndex withCell:cell];
 }
 
 -(BOOL)shouldDeselectItemAtIndex:(NSInteger)index

@@ -200,8 +200,9 @@ scrollPosition:(UICollectionViewScrollPosition)scrollPosition;
  The default implementation does nothing.
  
  @param index The index of the item that has been selected.
+ @param cell The collection view cell that was selected.
  */
--(void)didSelectItemAtIndex:(NSInteger)index;
+-(void)didSelectItemAtIndex:(NSInteger)index withCell:(UICollectionViewCell*)cell;
 
 /**
  Asks the module if the item at the specified index should be deselected.

@@ -117,11 +117,11 @@
     }
 }
 
--(void)didSelectItemAtIndex:(NSInteger)index
+-(void)didSelectItemAtIndex:(NSInteger)index withCell:(UICollectionViewCell*)cell
 {
-    if ([_delegate respondsToSelector:@selector(layoutModule:didSelectItemAtIndex:)])
+    if ([_delegate respondsToSelector:@selector(layoutModule:didSelectItemAtIndex:withCell:)])
     {
-        [_delegate layoutModule:self didSelectItemAtIndex:index];
+        [_delegate layoutModule:self didSelectItemAtIndex:index withCell:cell];
     }
 }
 

@@ -81,8 +81,9 @@
  
  @param layoutModule The layout module sending this information.
  @param index The index of the item that has been selected.
+ @param cell The collection view cell that was selected.
  */
--(void)layoutModule:(RLLayoutModule*)layoutModule didSelectItemAtIndex:(NSInteger)index;
+-(void)layoutModule:(RLLayoutModule*)layoutModule didSelectItemAtIndex:(NSInteger)index withCell:(UICollectionViewCell*)cell;
 
 /**
  Asks the delegate if the item at the specified index should be deselected.

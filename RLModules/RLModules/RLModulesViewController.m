@@ -250,7 +250,8 @@ scrollPosition:(UICollectionViewScrollPosition)scrollPosition
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RLModule *module = _modules[indexPath.section];
-    [module didSelectItemAtIndex:indexPath.item];
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    [module didSelectItemAtIndex:indexPath.item withCell:cell];
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath

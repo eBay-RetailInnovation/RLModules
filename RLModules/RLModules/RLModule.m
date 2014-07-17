@@ -159,7 +159,7 @@
     return YES;
 }
 
--(void)didSelectItemAtIndex:(NSInteger)index
+-(void)didSelectItemAtIndex:(NSInteger)index withCell:(UICollectionViewCell*)cell
 {
 }
 
