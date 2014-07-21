@@ -216,17 +216,17 @@ scrollPosition:(UICollectionViewScrollPosition)scrollPosition
 #pragma mark - Collection View Data Source
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return _modules.count;
+    return _visibleModules.count;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [(RLModule*)_modules[section] numberOfItems];
+    return [(RLModule*)_visibleModules[section] numberOfItems];
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RLModule *module = _modules[indexPath.section];
+    RLModule *module = _visibleModules[indexPath.section];
     return [module cellForItemAtIndex:indexPath.item
                      inCollectionView:collectionView
                         withIndexPath:indexPath];
@@ -235,7 +235,7 @@ scrollPosition:(UICollectionViewScrollPosition)scrollPosition
 #pragma mark - Collection View Delegate
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RLModule *module = _modules[indexPath.section];
+    RLModule *module = _visibleModules[indexPath.section];
     
     if (module.allowsSelection)
     {
@@ -249,26 +249,26 @@ scrollPosition:(UICollectionViewScrollPosition)scrollPosition
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RLModule *module = _modules[indexPath.section];
+    RLModule *module = _visibleModules[indexPath.section];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     [module didSelectItemAtIndex:indexPath.item withCell:cell];
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RLModule *module = _modules[indexPath.section];
+    RLModule *module = _visibleModules[indexPath.section];
     return [module shouldDeselectItemAtIndex:indexPath.item];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RLModule *module = _modules[indexPath.section];
+    RLModule *module = _visibleModules[indexPath.section];
     return [module didDeselectItemAtIndex:indexPath.item];
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RLModule *module = _modules[indexPath.section];
+    RLModule *module = _visibleModules[indexPath.section];
     
     if (module.allowsSelection)
     {
@@ -282,13 +282,13 @@ scrollPosition:(UICollectionViewScrollPosition)scrollPosition
 
 -(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RLModule *module = _modules[indexPath.section];
+    RLModule *module = _visibleModules[indexPath.section];
     return [module didHighlightItemAtIndex:indexPath.item];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RLModule *module = _modules[indexPath.section];
+    RLModule *module = _visibleModules[indexPath.section];
     return [module didUnhighlightItemAtIndex:indexPath.item];
 }
 
